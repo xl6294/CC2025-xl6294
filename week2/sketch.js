@@ -13,10 +13,10 @@ function setup() { // runs once at the start
 }
 
 function draw() { // runs in a loop after setup
-  let aUnit = windowHeight / 150; // Define scalable unit
-  let xUnit = 0; // Define horizontal shift token
+  aUnit = windowHeight / 150; // Define scalable unit
+  xUnit = 0; // Define horizontal shift token
   let xShift = xUnit * aUnit;
-  let yUnit = -30; // Define vertical shift token
+  yUnit = -30; // Define vertical shift token
   let yShift = yUnit * aUnit;
   
   //Define fill color and begin drawing
