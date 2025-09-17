@@ -25,8 +25,10 @@ function draw() { // runs in a loop after setup
   //Draw body triangle
   triangle(80 * aUnit + xShift, 40 * aUnit + yShift, 80 * aUnit + xShift, 120 * aUnit + yShift, 0 * aUnit + xShift, 120 * aUnit + yShift); // triangle(x1, y1, x2, y2, x3, y3)
   
+  //Change fill color to white for following shapes to cover/subtract
+  fill('white');
+
   // Subtractions from the body
-  fill('white'); //Change fill for following shapes to cover/subtract
   triangle(10 * aUnit + xShift, 110 * aUnit + yShift, 10 * aUnit + xShift, 120 * aUnit + yShift, 0 * aUnit + xShift, 120 * aUnit + yShift); // triangle(x1, y1, x2, y2, x3, y3)
   triangle(10 * aUnit + xShift, 120 * aUnit + yShift, 26 * aUnit + xShift, 104 * aUnit + yShift, 26 * aUnit + xShift, 120 * aUnit + yShift); // triangle(x1, y1, x2, y2, x3, y3)
   triangle(26 * aUnit + xShift, 120 * aUnit + yShift, 48 * aUnit + xShift, 98 * aUnit + yShift, 70 * aUnit + xShift, 120 * aUnit + yShift); // triangle(x1, y1, x2, y2, x3, y3)  
@@ -37,6 +39,7 @@ function draw() { // runs in a loop after setup
   vertex(80 * aUnit + xShift, 128 * aUnit + yShift);
   endShape(CLOSE);
   
+  //Change fill color back to black to resume drawing
   fill('black');
   
   // Draw head circle
