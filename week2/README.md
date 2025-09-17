@@ -1,4 +1,15 @@
-# template
+# Week 2
+
+<img src="https://scandiposter.pl/3403-large_default/geometric-poster-crow.jpg" alt="drawing" width="37%"/> <img src="./assets/crowPlanningOnGeoGebra.jpg" alt="drawing" width="60%"/>
+*Left: reference image from [Scandi Poster](https://scandiposter.pl/en/with-birds/geometric-poster-crow.html).*  
+*Right: draft planning on GeoGebra Geometry.*
+
+A list of elements I used:
+- circle
+- rectangle
+- triangle
+- polygon
+
 
 ---
 
