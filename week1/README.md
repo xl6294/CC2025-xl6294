@@ -10,7 +10,7 @@ This quote stood out to me because it highlights the very chaotic current situat
 
 ---
 
-> They not only copy our intellectual processes—our repeatable programs—but they also discourage our more complex processes—our higher order cognition, contemplation, innovation, and meaning making that should be the reward of “outsourcing” our arithmetic to silicon chips in the fi rst place. _(Rushkoff, p. 17)_
+> They not only copy our intellectual processes—our repeatable programs—but they also discourage our more complex processes—our higher order cognition, contemplation, innovation, and meaning making that should be the reward of “outsourcing” our arithmetic to silicon chips in the first place. _(Rushkoff, p. 17)_
 
 I think this quote really anticipates the relationship between people and AI now. We often treat AI as a “black box technology”, where we put most effort into prompt engineering and then hope for the best. The key may be to find the balance between automation and human creativity, between individual and collective thinking among “cybernetic organisms”.
 

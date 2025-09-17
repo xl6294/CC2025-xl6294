@@ -13,17 +13,17 @@ function setup() { // runs once at the start
 }
 
 function draw() { // runs in a loop after setup
-  let aUnit = windowWidth / 100;
+  let aUnit = windowHeight / 150;
   let xUnit = 0;
   let xShift = xUnit * aUnit;
   let yUnit = -30;
   let yShift = yUnit * aUnit;
   fill('black');
   
-  //Draw body
+  //Draw body triangle
   triangle(80 * aUnit + xShift, 40 * aUnit + yShift, 80 * aUnit + xShift, 120 * aUnit + yShift, 0 * aUnit + xShift, 120 * aUnit + yShift); // triangle(x1, y1, x2, y2, x3, y3)
   
-  // Subtractions
+  // Subtractions from the body
   fill('white');
   triangle(10 * aUnit + xShift, 110 * aUnit + yShift, 10 * aUnit + xShift, 120 * aUnit + yShift, 0 * aUnit + xShift, 120 * aUnit + yShift); // triangle(x1, y1, x2, y2, x3, y3)
   triangle(10 * aUnit + xShift, 120 * aUnit + yShift, 26 * aUnit + xShift, 104 * aUnit + yShift, 26 * aUnit + xShift, 120 * aUnit + yShift); // triangle(x1, y1, x2, y2, x3, y3)
@@ -40,19 +40,19 @@ function draw() { // runs in a loop after setup
   // Draw head circle
   circle(80 * aUnit + xShift, 50 * aUnit + yShift, 20 * aUnit); // circle(x, y, d)
   
-  // Draw chest arc
+  // Draw chest arc pie
   arc(60 * aUnit + xShift, 70 * aUnit + yShift, 60 * aUnit, 60 * aUnit, 0, PI / 2, PIE); // arc(x, y, w, h, start, stop, [mode], [detail])
   
-  // Draw neck
+  // Draw neck rectangle
   rect(80 * aUnit + xShift, 50 * aUnit + yShift, 90 * aUnit + xShift, 70 * aUnit + yShift); // rect(x1, y1, x2, y2)
   
-  // Draw beak
+  // Draw beak triangle
   triangle(60 * aUnit + xShift, 40 * aUnit + yShift, 80 * aUnit + xShift, 40 * aUnit + yShift, 70 * aUnit + xShift, 50 * aUnit + yShift); // triangle(x1, y1, x2, y2, x3, y3)
   
-  // Draw claw
+  // Draw claw rectangle
   rect(60 * aUnit + xShift, 118 * aUnit + yShift, 80 * aUnit + xShift, 120 * aUnit + yShift); // rect(x1, y1, x2, y2)
   
-  // Subtract eye
+  // Subtract eye circle
   fill('white');
   circle(80 * aUnit + xShift, 46 * aUnit + yShift, 4 * aUnit); // circle(x, y, d)
 
