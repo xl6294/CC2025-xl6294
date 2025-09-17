@@ -1,30 +1,32 @@
-let aUnit;
-let xUnit;
-let yUnit;
+
+let aUnit; // Set up scalable unit
+let xUnit; // Set up horizontal shift token
+let yUnit; // Set up vertical shift token
 
 function setup() { // runs once at the start
   createCanvas(windowWidth, windowHeight); // createCanvas() is a function that creates a canvas for our p5.js sketch …
-  background('white');
-  print(width, height);
-  stroke('cyan');
-  strokeWeight(3); 
+  background('white'); // Color the background to match the color o subtractions
+  stroke('cyan'); // Color strokes as guides
+  strokeWeight(3); // Thicken strokes
   noStroke(); // Disable to see composition
-  rectMode(CORNERS);
+  rectMode(CORNERS); // Change the rect() mode to rect(x1, y1, x2, y2)
 }
 
 function draw() { // runs in a loop after setup
-  let aUnit = windowHeight / 150;
-  let xUnit = 0;
+  let aUnit = windowHeight / 150; // Define scalable unit
+  let xUnit = 0; // Define horizontal shift token
   let xShift = xUnit * aUnit;
-  let yUnit = -30;
+  let yUnit = -30; // Define vertical shift token
   let yShift = yUnit * aUnit;
+  
+  //Define fill color and begin drawing
   fill('black');
   
   //Draw body triangle
   triangle(80 * aUnit + xShift, 40 * aUnit + yShift, 80 * aUnit + xShift, 120 * aUnit + yShift, 0 * aUnit + xShift, 120 * aUnit + yShift); // triangle(x1, y1, x2, y2, x3, y3)
   
   // Subtractions from the body
-  fill('white');
+  fill('white'); //Change fill for following shapes to cover/subtract
   triangle(10 * aUnit + xShift, 110 * aUnit + yShift, 10 * aUnit + xShift, 120 * aUnit + yShift, 0 * aUnit + xShift, 120 * aUnit + yShift); // triangle(x1, y1, x2, y2, x3, y3)
   triangle(10 * aUnit + xShift, 120 * aUnit + yShift, 26 * aUnit + xShift, 104 * aUnit + yShift, 26 * aUnit + xShift, 120 * aUnit + yShift); // triangle(x1, y1, x2, y2, x3, y3)
   triangle(26 * aUnit + xShift, 120 * aUnit + yShift, 48 * aUnit + xShift, 98 * aUnit + yShift, 70 * aUnit + xShift, 120 * aUnit + yShift); // triangle(x1, y1, x2, y2, x3, y3)  
