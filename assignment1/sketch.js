@@ -26,7 +26,8 @@ function setup() {
 
   strokeWeight(1/s); //
 
-  fill('rgba(0, 0, 0, 0)')
+  // fill('rgba(0, 0, 0, 0)')
+
   rectMode(CORNERS); // Change the rect() mode to rect(x1, y1, x2, y2)
   
   background(backgroundMain)
@@ -71,6 +72,9 @@ function draw() {
   // Draw the triangle
   fill(softAccent); // Change fill color
   triangle(92.7575546901546, 4.8425461432347, 90.0513472751721, 10.8008109966145, 95.4714777639284, 10.8008109966145); // triangle(x1, y1, x2, y2, x3, y3)
+  
+  blendMode(EXCLUSION);
+
   // Draw the overlapping bar
   fill(highlight); // Change fill color
   rect(90.8243601354171, 10.53395018755, 91.2766539702648, 12.3996622562968); // rect(x1, y1, x2, y2)
@@ -110,6 +114,8 @@ function draw() {
   // Draw the quadrilateral touching the triagle above
   fill(highlight); // Change fill color
   quad(25.0653748933605, 37.6866094025094, 23.3792154309713, 27.0075994740447, 33.3765862866293, 19.587949941456, 30.7791554524918, 32.8624373544005); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
+
+  blendMode(BLEND);
 
   // Center-right area
   // Draw the irregular polygon
@@ -182,7 +188,7 @@ function draw() {
   endShape();
   // Subtract arc fan
   fill(backgroundMain); // Change fill color
-  arc(75.6450222168773, 19.5956243440933, 2 * 2.6881143297308, 2 * 2.6881143297308, radians(0), radians(56.5665885097687));
+  arc(75.6450222168773, 19.5956243440933, 2 * 2.6881143297308, 2 * 2.6881143297308, radians(0), radians(56.5665885097687), OPEN); // arc(x, y, w, h, start, stop, [mode], [detail])
   // Overlapping bars
   fill(highlight); // Change fill color
   rect(79.3887476957364, 20.2036711572398, 83.2218874937364, 20.4804624336818); // rect(x1, y1, x2, y2)
