@@ -1,61 +1,27 @@
-# Assignment 1
+# Assignment 1: Geometric Abstraction
+
+## 🎨 Source Artwork
+For this assignment, I chose Ilya Bolotowsky’s [*Untitled, From the Williamsburg Housing Project Murals*](https://artsandculture.google.com/asset/untitled-from-the-williamsburg-housing-project-murals/-AEJMMIK6GTRlg?hl=en) (1936).   
+
+![Painting Reference](https://upload.wikimedia.org/wikipedia/commons/e/e9/Brooklyn_Museum_-_Untitled_From_the_Williamsburg_Housing_Project_Murals_-_Ilya_Bolotowsky.jpg)
 
 ---
 
-This is a README file that can be used to describe and document your assignment.
+## 🛠️ Process
 
-Markdown Cheatsheet (from [https://www.markdownguide.org/cheat-sheet/](https://www.markdownguide.org/cheat-sheet/)):
+For this project, I used both Adobe Illustrator and GeoGebra to plan the composition and identify the key coordinates. Since the painting contained a large, complex area of intersecting shapes, entering full mathematical expressions for every single coordinate would have been intense. Instead, I chose a mixed approach:
+- For certain scattered objects, I used variables and expressions for the coordinates.
+- For the more complex areas, I experimented with the [scale()](https://p5js.org/reference/p5/scale/) function, which allowed me to adjust the size of the entire composition more easily
 
----
+<img src="./assets/draftingInIllustratorScreenshot.png" alt="drawing" width="40%"/> <img src="./assets/draftingInGeoGebraScreenshot5.png" alt="drawing" width="50%"/>
+<img src="./assets/draftingInGeoGebraScreenshot1.png" alt="drawing" width="34%"/> <img src="./assets/draftingInGeoGebraScreenshot3.png" alt="drawing" width="16%"/> <img src="./assets/draftingInGeoGebraScreenshot2.png" alt="drawing" width="23%"/> <img src="./assets/draftingInGeoGebraScreenshot4.png" alt="drawing" width="22%"/>
 
-# Heading1
-## Heading2
-### Heading3
-#### Heading4
-##### Heading5
-###### Heading6
+I used Illustrator’s Curve Pen tool to create the curves, then took a screenshot of the control points. I then imported the image into GeoGebra to plan the composition and identify the key coordinates, which helped me avoid intensive manual calculations. I also played around with [blendMode()](https://p5js.org/reference/p5/blendMode/).
 
-**bold text**
-
-*italicized text*
-
-~~strikethrough text~~
-
-Ordered List:
-1. First item
-2. Second item
-3. Third item
-
-Unordered List:
-- First item
-- Second item
-- Third item
-
-`short code block`
-
-```
-extended code block
-fun() {
-  return 0
-}
-```
-
-Link:  
-[linked text](https://www.example.com)
-
-
-Image with url:  
-![image description](https://dm-gy-6063-2024f-b.github.io/assets/homework/02/clark-espaco-modulado-00.jpg)
-
-
-Image on repo:  
-![image description](./file-name.jpg)
-
-
-To start a new line, add two spaces at the end of a line, like this:  
-this is a new line.
-
-
-To start a new paragraph, leave an empty line between two lines of text.
-
-This is a new paragraph.
+## ✅ Shape-drawing functions I used:
+1. rect()
+2. circle()
+3. triangle()
+4. quad()
+5. beginShape() + vertex()/curveVertex() + endShape()
+6. arc()

@@ -1,3 +1,22 @@
+// Plum	DDA0DD	221, 160, 221
+// Thistle	D8BFD8	216, 191, 216
+// Gold	FFD700	255, 215, 0
+// DarkSlateBlue	483D8B	72, 61, 139
+// DarkOrchid	9932CC	153, 50, 204
+// DarkSeaGreen	8FBC8F	143, 188, 143
+// DarkSlateGray	2F4F4F	47, 79, 79
+// DarkGreen	006400	0, 100, 0
+
+// Functional color roles
+let backgroundMain = "#D8BFD8"; // soft background
+let backgroundDark = "#2F4F4F"; // dark slate gray
+let softAccent = "#DDA0DD"; // plum
+let primaryAccent = "#9932CC"; // dark orchid
+let heavyAccent = "#483D8B"; // dark slate blue
+let highlight = "#FFD700"; // gold
+let neuturalGreen = "#8FBC8F"; // dark sea green
+let greenContrast = "#006400"; // dark gree
+
 let s; // scale factor
 
 function setup() {
@@ -6,11 +25,11 @@ function setup() {
   // scale(s);
 
   strokeWeight(1/s); //
-  fill('rgba(0, 0, 0, 0)')
 
+  fill('rgba(0, 0, 0, 0)')
   rectMode(CORNERS); // Change the rect() mode to rect(x1, y1, x2, y2)
   
-  background('beige')
+  background(backgroundMain)
 
 }
 
@@ -19,48 +38,61 @@ function draw() {
 
   // Begin drawing
 
-
   // Draw the physical canvas/paper of the artwork
-  rect(0.7774408693644, 0.8252147001786, 99.1964382770099, 40.5076040662696)
+  fill(backgroundDark); // Change fill color
+  rect(0.7774408693644, 0.8252147001786, 99.1964382770099, 40.5076040662696);
 
 
   // Draw the scattered objects
 
   // Top-left area
   // Draw the three bars
+  fill(greenContrast); // Change fill color
   rect(2.6332852934469, 6.9813303752316, 10.3900205648872, 7.3295722412337); // rect(x1, y1, x2, y2)
   rect(2.6332852934469, 8.017000208404, 10.3900205648872, 8.3607141919892); // rect(x1, y1, x2, y2)
   rect(2.6332852934469, 9.0354120116193, 10.3900205648872, 9.3589013113127); // rect(x1, y1, x2, y2)
   // Draw the line across the three bars
+  // stroke(100); // Change stroke color
   line(5.1961203684895, 5.2418280446425, 12.8469390401439, 12.7780753884353); // line(x1, y1, x2, y2)
   // Draw the horizontal line
   line(2.2832435631058, 14.2507009828738, 27.2643884322168, 14.2507009828738); // line(x1, y1, x2, y2)
   // Draw the small circle
+  fill(primaryAccent); // Change fill color
   circle(15.4672212472178, 11.9798986528623, 2 * 0.8185133961368); // circle(x, y, d)
   // Draw the quadrilateral
+  fill(neuturalGreen); // Change fill color
   quad(30.6783278454118, 5.1068356906396, 34.7615827469832, 6.8568020770274, 35.1561830105805, 15.5380078761669, 28.9969875918235, 16.6874956005589); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
 
   // Top-middle area
   // Draw the laying down quadrilateral
+  fill(heavyAccent); // Change fill color
   quad(43.7458766902461, 8.2814538671733, 48.9578900616597, 8.2814538671733, 48.3024871826197, 9.3589013113127, 43.7458766902461, 10.1748399621779); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
 
   // Top-right area
   // Draw the small circle
+  fill(highlight); // Change fill color
   circle(73.0328188186419, 14.4961522652832, 2 * 1.0503401944717); // circle(x, y, d)
   // Draw the triangle
+  fill(softAccent); // Change fill color
   triangle(92.7575546901546, 4.8425461432347, 90.0513472751721, 10.8008109966145, 95.4714777639284, 10.8008109966145); // triangle(x1, y1, x2, y2, x3, y3)
   // Draw the overlapping bar
+  fill(highlight); // Change fill color
   rect(90.8243601354171, 10.53395018755, 91.2766539702648, 12.3996622562968); // rect(x1, y1, x2, y2)
 
   // Bottom-left area
   // Draw the rectangle
+  fill(neuturalGreen); // Change fill color
   rect(6.5290262461013, 31.979717358309, 7.1908373834168, 33.5841079942255); // rect(x1, y1, x2, y2)
 
   // Bottom-right area
   // Draw the bars
+  fill(heavyAccent); // Change fill color
   rect(81.4009548985583, 35.9605290011875, 97.889744415051, 36.3482413636907); // rect(x1, y1, x2, y2)
+  fill(255); // Change fill color
   rect(81.4009548985583, 35.9605290011875, 88.5220868101393, 36.3482413636907); // rect(x1, y1, x2, y2)
+  fill(neuturalGreen); // Change fill color
   rect(81.4009548985583, 35.9605290011875, 83.9839325698857, 36.3482413636907); // rect(x1, y1, x2, y2)
+  fill(greenContrast); // Change fill color
   rect(81.4009548985583, 35.9605290011875, 81.8324436685234, 36.3482413636907); // rect(x1, y1, x2, y2)
 
 
@@ -68,21 +100,28 @@ function draw() {
 
   // Draw the left triangle with strings
   // Draw the triangle
+  stroke(highlight); // Change stroke color
+  fill(greenContrast); // Change fill color
   triangle(2.808069989824, 15.9913576531022, 25.0653748933605, 37.6866094025094, 23.3792154309713, 27.0075994740447); // triangle(x1, y1, x2, y2, x3, y3)
   // Draw the strings
   line(2.808069989824, 15.9913576531022, 23.6578115079102, 28.7720412946577); // line(x1, y1, x2, y2)
   line(2.808069989824, 15.9913576531022, 23.9470410229002, 30.6038282229277); // line(x1, y1, x2, y2)
   line(2.808069989824, 15.9913576531022, 24.2727280397797, 32.6665126631645); // line(x1, y1, x2, y2)
   line(2.808069989824, 15.9913576531022, 24.627277245655, 34.9119909670416); // line(x1, y1, x2, y2)
+  stroke(0); // Change back the stroke color
 
   // Center-left area
   // Draw the quadrilateral touching the triagle above
+  fill(highlight); // Change fill color
   quad(25.0653748933605, 37.6866094025094, 23.3792154309713, 27.0075994740447, 33.3765862866293, 19.587949941456, 30.7791554524918, 32.8624373544005); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
   // Draw the next overlapping quadrilateral
+  fill(softAccent); // Change fill color
   quad(27.1553120971662, 32.3219150575738, 33.3765862866293, 19.587949941456, 40.1580190266932, 21.4619250482171, 34.2753087182003, 33.3839137560947); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
   // Draw the next overlapping triangle
+  fill(neuturalGreen); // Change fill color
   triangle(30.7791554524918, 32.8624373544005, 33.3765862866293, 19.587949941456, 37.0798899637893, 33.8022372176413); // triangle(x1, y1, x2, y2, x3, y3)
   // Draw the next overlapping quadrilateral
+  fill(heavyAccent); // Change fill color
   quad(40.1580190266932, 21.4619250482171, 34.2753087182003, 33.3839137560947, 39.7446129201635, 34.1996998095796, 47.0561628703415, 23.3681519977942); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
 
   // Center area
@@ -104,9 +143,41 @@ function draw() {
   vertex(57.5661998708155, 19.5956243440933);
   vertex(65.2344047254535, 19.5956243440933);
   vertex(65.2344047254535, 21.1727516615055);
-  endShape(CLOSE);
+  vertex(74.7248493951632, 21.1727516615055);
+  vertex(76.0813787988629, 19.5956243440933); // C2
+  vertex(84.1329732482536, 19.5956243440933);
+  vertex(84.1329732482536, 23.873190918575);
+  vertex(96.0487152175628, 23.873190918575);
+  vertex(96.0487152175628, 31.6647848168072); // I2
+  vertex(68.1351091929873, 31.6647848168072);
+  vertex(68.1351091929873, 37.2941456008137);
+  vertex(59.2882513687224, 37.2941456008137);
+  vertex(59.2882513687224, 33.1319305903947);
+  vertex(50.7995421781137, 33.1319305903947);
+  endShape();
+  // Draw the triangle inside
+  triangle(62.2970263241626, 27.6948802128289, 69.6739609854552, 27.6948802128289, 65.9946549165989, 31.5839051930448); // triangle(x1, y1, x2, y2, x3, y3)
+  // Draw the overlapping bars
+  rect(71.1898523110427, 30.3005258291071, 71.6607914353417, 34.8664444263117); // rect(x1, y1, x2, y2)
+  rect(71.1898523110427, 30.3005258291071, 71.675980403495, 31.0616079038992); // rect(x1, y1, x2, y2)
+  // Draw the far right overlapping rectangle and bar
+  rect(89.6668981330765, 28.360416249761, 96.0487152175628, 31.6647848168072); // rect(x1, y1, x2, y2)
+  rect(89.6668981330765, 31.187417664552, 96.0487152175628, 31.3410590457906); // rect(x1, y1, x2, y2)
 
-  47.0561628703415, 23.3681519977942
+  // Draw the "P" shape
+  // Draw the irregular pentagon
+  beginShape();
+  vertex(77.1287778264008, 21.8371479199032); // W3
+  vertex(80.3223976899208, 21.8371479199032);
+  vertex(80.3223976899208, 12.1397165362797);
+  vertex(78.3768042764028, 5.6182210171484);
+  vertex(78.3768042764028, 19.5956243440933);
+  endShape();
+  // Subtract arc fan
+  arc(75.6450222168773, 19.5956243440933, 2 * 2.6881143297308, 2 * 2.6881143297308, radians(0), radians(56.5665885097687));
+  // Overlapping bars
+  rect(79.3887476957364, 20.2036711572398, 83.2218874937364, 20.4804624336818); // rect(x1, y1, x2, y2)
+  rect(79.3887476957364, 21.1727516615055, 83.2218874937364, 21.4366504795725); // rect(x1, y1, x2, y2)
 
   // Draw the ear shape
   beginShape();
