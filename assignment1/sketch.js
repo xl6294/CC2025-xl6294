@@ -52,21 +52,17 @@ function draw() {
   rect(2.6332852934469, 8.017000208404, 10.3900205648872, 8.3607141919892); // rect(x1, y1, x2, y2)
   rect(2.6332852934469, 9.0354120116193, 10.3900205648872, 9.3589013113127); // rect(x1, y1, x2, y2)
   // Draw the line across the three bars
-  // stroke(100); // Change stroke color
+  stroke(neuturalGreen); // Change stroke color
   line(5.1961203684895, 5.2418280446425, 12.8469390401439, 12.7780753884353); // line(x1, y1, x2, y2)
   // Draw the horizontal line
   line(2.2832435631058, 14.2507009828738, 27.2643884322168, 14.2507009828738); // line(x1, y1, x2, y2)
+  noStroke()
   // Draw the small circle
   fill(primaryAccent); // Change fill color
   circle(15.4672212472178, 11.9798986528623, 2 * 0.8185133961368); // circle(x, y, d)
   // Draw the quadrilateral
   fill(neuturalGreen); // Change fill color
   quad(30.6783278454118, 5.1068356906396, 34.7615827469832, 6.8568020770274, 35.1561830105805, 15.5380078761669, 28.9969875918235, 16.6874956005589); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
-
-  // Top-middle area
-  // Draw the laying down quadrilateral
-  fill(heavyAccent); // Change fill color
-  quad(43.7458766902461, 8.2814538671733, 48.9578900616597, 8.2814538671733, 48.3024871826197, 9.3589013113127, 43.7458766902461, 10.1748399621779); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
 
   // Top-right area
   // Draw the small circle
@@ -108,34 +104,16 @@ function draw() {
   line(2.808069989824, 15.9913576531022, 23.9470410229002, 30.6038282229277); // line(x1, y1, x2, y2)
   line(2.808069989824, 15.9913576531022, 24.2727280397797, 32.6665126631645); // line(x1, y1, x2, y2)
   line(2.808069989824, 15.9913576531022, 24.627277245655, 34.9119909670416); // line(x1, y1, x2, y2)
-  stroke(0); // Change back the stroke color
+  noStroke(); // Remove stroke for following drawings
 
   // Center-left area
   // Draw the quadrilateral touching the triagle above
   fill(highlight); // Change fill color
   quad(25.0653748933605, 37.6866094025094, 23.3792154309713, 27.0075994740447, 33.3765862866293, 19.587949941456, 30.7791554524918, 32.8624373544005); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
-  // Draw the next overlapping quadrilateral
-  fill(softAccent); // Change fill color
-  quad(27.1553120971662, 32.3219150575738, 33.3765862866293, 19.587949941456, 40.1580190266932, 21.4619250482171, 34.2753087182003, 33.3839137560947); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
-  // Draw the next overlapping triangle
-  fill(neuturalGreen); // Change fill color
-  triangle(30.7791554524918, 32.8624373544005, 33.3765862866293, 19.587949941456, 37.0798899637893, 33.8022372176413); // triangle(x1, y1, x2, y2, x3, y3)
-  // Draw the next overlapping quadrilateral
-  fill(heavyAccent); // Change fill color
-  quad(40.1580190266932, 21.4619250482171, 34.2753087182003, 33.3839137560947, 39.7446129201635, 34.1996998095796, 47.0561628703415, 23.3681519977942); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
-
-  // Center area
-  // Draw the irregular pentagon
-  beginShape();
-  vertex(50.7995421781137, 33.1319305903947);
-  vertex(65.2344047254535, 19.5956243440933);
-  vertex(57.5661998708155, 19.5956243440933);
-  vertex(57.5661998708155, 14.9657133853773);
-  vertex(40.9405069904394, 21.6781570778791);
-  endShape();
 
   // Center-right area
   // Draw the irregular polygon
+  fill(backgroundMain); // Change fill color
   beginShape();
   vertex(47.0561628703415, 23.3681519977942);
   vertex(47.0561628703415, 3.3652512513369);
@@ -155,17 +133,46 @@ function draw() {
   vertex(59.2882513687224, 33.1319305903947);
   vertex(50.7995421781137, 33.1319305903947);
   endShape();
+
+  blendMode(DIFFERENCE);
+
+  // Draw the next overlapping quadrilateral
+  fill(softAccent); // Change fill color
+  quad(27.1553120971662, 32.3219150575738, 33.3765862866293, 19.587949941456, 40.1580190266932, 21.4619250482171, 34.2753087182003, 33.3839137560947); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
+  // Draw the irregular pentagon
+  fill(neuturalGreen); // Change fill color
+  beginShape();
+  vertex(50.7995421781137, 33.1319305903947);
+  vertex(65.2344047254535, 19.5956243440933);
+  vertex(57.5661998708155, 19.5956243440933);
+  vertex(57.5661998708155, 14.9657133853773);
+  vertex(40.9405069904394, 21.6781570778791);
+  endShape();
+  
+  blendMode(BLEND);
+
+  // Draw the next overlapping quadrilateral
+  fill(heavyAccent); // Change fill color
+  quad(40.1580190266932, 21.4619250482171, 34.2753087182003, 33.3839137560947, 39.7446129201635, 34.1996998095796, 47.0561628703415, 23.3681519977942); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
+
+
   // Draw the triangle inside
+  fill(heavyAccent); // Change fill color
   triangle(62.2970263241626, 27.6948802128289, 69.6739609854552, 27.6948802128289, 65.9946549165989, 31.5839051930448); // triangle(x1, y1, x2, y2, x3, y3)
   // Draw the overlapping bars
+  fill(neuturalGreen); // Change fill color
   rect(71.1898523110427, 30.3005258291071, 71.6607914353417, 34.8664444263117); // rect(x1, y1, x2, y2)
+  fill(highlight); // Change fill color
   rect(71.1898523110427, 30.3005258291071, 71.675980403495, 31.0616079038992); // rect(x1, y1, x2, y2)
   // Draw the far right overlapping rectangle and bar
+  fill(neuturalGreen); // Change fill color
   rect(89.6668981330765, 28.360416249761, 96.0487152175628, 31.6647848168072); // rect(x1, y1, x2, y2)
+  fill(backgroundDark); // Change fill color
   rect(89.6668981330765, 31.187417664552, 96.0487152175628, 31.3410590457906); // rect(x1, y1, x2, y2)
 
   // Draw the "P" shape
   // Draw the irregular pentagon
+  fill(greenContrast); // Change fill color
   beginShape();
   vertex(77.1287778264008, 21.8371479199032); // W3
   vertex(80.3223976899208, 21.8371479199032);
@@ -174,37 +181,32 @@ function draw() {
   vertex(78.3768042764028, 19.5956243440933);
   endShape();
   // Subtract arc fan
+  fill(backgroundMain); // Change fill color
   arc(75.6450222168773, 19.5956243440933, 2 * 2.6881143297308, 2 * 2.6881143297308, radians(0), radians(56.5665885097687));
   // Overlapping bars
+  fill(highlight); // Change fill color
   rect(79.3887476957364, 20.2036711572398, 83.2218874937364, 20.4804624336818); // rect(x1, y1, x2, y2)
   rect(79.3887476957364, 21.1727516615055, 83.2218874937364, 21.4366504795725); // rect(x1, y1, x2, y2)
 
   // Draw the ear shape
+  fill(greenContrast); // Change fill color
   beginShape();
-
-  //control point (not rendered)
-  curveVertex(78.3768042764028, 5.6182210171484); // Point C
-  
+  curveVertex(78.3768042764028, 5.6182210171484); // Point C //control point (not rendered)
   curveVertex(78.3768042764028, 5.6182210171484); // Point C
   curveVertex(80.8234088693675, 5.2424626325634); // Point D
   curveVertex(81.908933091502, 6.3279868546979);  // Point E
   curveVertex(81.984084768419, 8.131627100706);   // Point F
   curveVertex(81.0154631548221, 9.6012598937497); // Point G
   curveVertex(80.3223976899208, 12.1397165362797);// Point H
-
-  //control point (not rendered)
-  curveVertex(80.3223976899208, 12.1397165362797);// Point H
-  
+  curveVertex(80.3223976899208, 12.1397165362797);// Point H //control point (not rendered)
   endShape();
-  
+
+  blendMode(DIFFERENCE);
 
   // Draw the big splash shape
-  
+  fill(highlight); // Change fill color
   beginShape();
-
-  //control point (not rendered)
-  curveVertex(39.7446129201635, 34.1996998095796); // Point C
-  
+  curveVertex(39.7446129201635, 34.1996998095796); // Point C //control point (not rendered)
   curveVertex(39.7446129201635, 34.1996998095796); // Point C
   curveVertex(39.5667697490487, 34.5244569046587); // Point D
   curveVertex(39.0873664182177, 34.8801432468882); // Point E
@@ -233,22 +235,15 @@ function draw() {
   curveVertex(52.3398539951591, 18.8589995155786); // Point D1
   curveVertex(50.2938296960473, 22.1105651029639); // Point E1
   curveVertex(47.0561628703415, 23.3681519977942); // Point F1
-
-  //control point (not rendered)
-  curveVertex(47.0561628703415, 23.3681519977942); // Point F1
-  
+  curveVertex(47.0561628703415, 23.3681519977942); // Point F1 //control point (not rendered)
   endShape();
-  
 
-
-
+  blendMode(BLEND);
 
   // Draw the flipped "C" shaped
+  fill(heavyAccent); // Change fill color
   beginShape();
-
-  //control point (not rendered)
-  curveVertex(47.0561628703415, 23.3681519977942); // Point C
-  
+  curveVertex(47.0561628703415, 23.3681519977942); // Point C //control point (not rendered)
   curveVertex(47.0561628703415, 23.3681519977942); // Point C
   curveVertex(51.2594990773357, 25.746708556953);  // Point D
   curveVertex(51.9300568948539, 30.5157742625954); // Point E
@@ -256,22 +251,13 @@ function draw() {
   curveVertex(49.0859596027321, 34.3442647009409); // Point G
   curveVertex(46.0354588155297, 34.9653006691499); // Point H
   curveVertex(39.7446129201635, 34.1996998095796); // Point I
-
-  //control point (not rendered)
-  curveVertex(39.7446129201635, 34.1996998095796); // Point I
-  
+  curveVertex(39.7446129201635, 34.1996998095796); // Point I //control point (not rendered)
   endShape();
   
-
-
-
-
   // Draw the "E" shape
+  fill(neuturalGreen); // Change fill color
   beginShape();
-
-  // prepend last point for smooth closure
-  curveVertex(43.2369309021009, 25.199257203689); // A1
-  
+  curveVertex(43.2369309021009, 25.199257203689); // A1 // prepend last point for smooth closure
   curveVertex(42.0768498100259, 25.754078595551); // C
   curveVertex(41.1353347208057, 26.6787809153209); // D
   curveVertex(40.967207026302, 27.2840406155339); // E
@@ -296,13 +282,28 @@ function draw() {
   curveVertex(43.0183648992462, 27.2672278460835); // W
   curveVertex(43.7917522939628, 25.6027636704977); // Z
   curveVertex(43.2369309021009, 25.199257203689); // A1
-  
-  // append first two points again for smooth closure
-  curveVertex(42.0768498100259, 25.754078595551); // C
-  curveVertex(41.1353347208057, 26.6787809153209); // D
-  
+  curveVertex(42.0768498100259, 25.754078595551); // C // append first two points again for smooth closure
+  curveVertex(41.1353347208057, 26.6787809153209); // D // append first two points again for smooth closure
   endShape();
   
-  
-  
+  blendMode(DIFFERENCE);
+
+  // Draw the next overlapping triangle
+  fill(neuturalGreen); // Change fill color
+  triangle(30.7791554524918, 32.8624373544005, 33.3765862866293, 19.587949941456, 37.0798899637893, 33.8022372176413); // triangle(x1, y1, x2, y2, x3, y3)
+
+  // Top-middle area
+  // Draw the laying down quadrilateral
+  fill(heavyAccent); // Change fill color
+  quad(43.7458766902461, 8.2814538671733, 48.9578900616597, 8.2814538671733, 48.3024871826197, 9.3589013113127, 43.7458766902461, 10.1748399621779); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
+
+
+  blendMode(BLEND);
+
+  // Draw last ellipse
+  fill(highlight); // Change fill color
+  translate(43.2312951617475, 29.9346105564975); // move origin to ellipse center
+  rotate(radians(19.1678963520082)); // rotate by 45 degrees
+  ellipse(0, 0, 0.8343119335113, 1.6373877536782); // ellipse(x, y, w, [h])
+
 }
