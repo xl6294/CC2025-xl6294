@@ -49,15 +49,15 @@ function draw() {
   // Top-left area
   // Draw the three bars
   fill(greenContrast); // Change fill color
-  rect(2.6332852934469, 6.9813303752316, 10.3900205648872, 7.3295722412337); // rect(x1, y1, x2, y2)
-  rect(2.6332852934469, 8.017000208404, 10.3900205648872, 8.3607141919892); // rect(x1, y1, x2, y2)
-  rect(2.6332852934469, 9.0354120116193, 10.3900205648872, 9.3589013113127); // rect(x1, y1, x2, y2)
+  rect(2.6332852934469% width, 6.9813303752316% width, 10.3900205648872% width, 7.3295722412337% width); // rect(x1, y1, x2, y2)
+  rect(2.6332852934469% width, 8.017000208404% width, 10.3900205648872% width, 8.3607141919892% width); // rect(x1, y1, x2, y2)
+  rect(2.6332852934469% width, 9.0354120116193% width, 10.3900205648872% width, 9.3589013113127% width); // rect(x1, y1, x2, y2)
   // Draw the line across the three bars
-  stroke(neuturalGreen); // Change stroke color
+  stroke(neuturalGreen); // Assign stroke color for drawing lines
   line(5.1961203684895, 5.2418280446425, 12.8469390401439, 12.7780753884353); // line(x1, y1, x2, y2)
   // Draw the horizontal line
   line(2.2832435631058, 14.2507009828738, 27.2643884322168, 14.2507009828738); // line(x1, y1, x2, y2)
-  noStroke()
+  noStroke() // Remove stroke for incoming fill-only shapes
   // Draw the small circle
   fill(primaryAccent); // Change fill color
   circle(15.4672212472178, 11.9798986528623, 2 * 0.8185133961368); // circle(x, y, d)
@@ -73,7 +73,7 @@ function draw() {
   fill(softAccent); // Change fill color
   triangle(92.7575546901546, 4.8425461432347, 90.0513472751721, 10.8008109966145, 95.4714777639284, 10.8008109966145); // triangle(x1, y1, x2, y2, x3, y3)
   
-  blendMode(EXCLUSION);
+  blendMode(EXCLUSION); // Setting blending mode for rendering, EXCLUSION has less contrast than DIFFERENCE
 
   // Draw the overlapping bar
   fill(highlight); // Change fill color
@@ -115,7 +115,7 @@ function draw() {
   fill(highlight); // Change fill color
   quad(25.0653748933605, 37.6866094025094, 23.3792154309713, 27.0075994740447, 33.3765862866293, 19.587949941456, 30.7791554524918, 32.8624373544005); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
 
-  blendMode(BLEND);
+  blendMode(BLEND); // Setting blending mode back to default
 
   // Center-right area
   // Draw the irregular polygon
@@ -140,7 +140,7 @@ function draw() {
   vertex(50.7995421781137, 33.1319305903947);
   endShape();
 
-  blendMode(DIFFERENCE);
+  blendMode(DIFFERENCE); // Setting blending mode for rendering
 
   // Draw the next overlapping quadrilateral
   fill(softAccent); // Change fill color
@@ -155,7 +155,7 @@ function draw() {
   vertex(40.9405069904394, 21.6781570778791);
   endShape();
   
-  blendMode(BLEND);
+  blendMode(BLEND); // Setting blending mode back to default
 
   // Draw the next overlapping quadrilateral
   fill(heavyAccent); // Change fill color
@@ -207,7 +207,7 @@ function draw() {
   curveVertex(80.3223976899208, 12.1397165362797);// Point H //control point (not rendered)
   endShape();
 
-  blendMode(DIFFERENCE);
+  blendMode(DIFFERENCE); // Setting blending mode for rendering
 
   // Draw the big splash shape
   fill(highlight); // Change fill color
@@ -244,7 +244,7 @@ function draw() {
   curveVertex(47.0561628703415, 23.3681519977942); // Point F1 //control point (not rendered)
   endShape();
 
-  blendMode(BLEND);
+  blendMode(BLEND); // Setting blending mode back to default
 
   // Draw the flipped "C" shaped
   fill(heavyAccent); // Change fill color
@@ -292,7 +292,7 @@ function draw() {
   curveVertex(41.1353347208057, 26.6787809153209); // D // append first two points again for smooth closure
   endShape();
   
-  blendMode(DIFFERENCE);
+  blendMode(DIFFERENCE); // Setting blending mode for rendering
 
   // Draw the next overlapping triangle
   fill(neuturalGreen); // Change fill color
@@ -304,7 +304,7 @@ function draw() {
   quad(43.7458766902461, 8.2814538671733, 48.9578900616597, 8.2814538671733, 48.3024871826197, 9.3589013113127, 43.7458766902461, 10.1748399621779); // quad(x1, y1, x2, y2, x3, y3, x4, y4)
 
 
-  blendMode(BLEND);
+  blendMode(BLEND); // Setting blending mode back to default
 
   // Draw last ellipse
   fill(highlight); // Change fill color
