@@ -14,4 +14,4 @@
 - [Drafting integration i](https://editor.p5js.org/xl6294/sketches/xV0v9_GYF)
 - [Drafting integration ii](https://editor.p5js.org/xl6294/sketches/aevphcJ8f)
 - [Interesting error which leads to final result](https://editor.p5js.org/xl6294/sketches/biFKRkiWc)
-- [Final product](https://editor.p5js.org/xl6294/sketches/n2t3OMrHS)
+- [Final product (without pistil and placeholder grey flowers)](https://editor.p5js.org/xl6294/sketches/n2t3OMrHS)
