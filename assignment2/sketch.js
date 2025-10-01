@@ -16,11 +16,13 @@ function draw() {
   background(60, 20, 100, 1); // set background color
 
   a = 0; // reset control variable each loop in case mouse is released
+  b = 1; // so pistils are opaque
 
   // when mouse is pressed, start animating rotation + alter composition
   if (mouseIsPressed == true) {
     windSpeed = frameCount / 30; // continuous increase over time/loops
     a = 50; // offset eH from [0~50] to [-50~0]
+    b = 0; // hide the pistils
   }
 
   // two dimensional for loop
@@ -66,6 +68,13 @@ function draw() {
           map(dist(mouseX, mouseY, x + 50, y + 50), 0, 100 * sqrt(2), 0, 50)
         );
       }
+
+      push();
+
+      fill(60, 100, 100, b);
+      circle(50, 50, 100 - 2 * eH); // illustrate the pistils where the flowers have a central hole
+
+      pop();
 
       // this for loop draw the individual petal arcs repeatedly in each cell through rotation
       for (i = 0; i < numP; i++) {
