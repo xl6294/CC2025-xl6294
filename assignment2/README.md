@@ -10,10 +10,11 @@
 ## Drafting Docs (p5.js Web Editor)
 
 1. [Drafting a single cell](https://editor.p5js.org/xl6294/sketches/cOgVBtshJ)
-   - In this first sketch, I’m drafting the single element that will later appear in each grid cell with a `for loop`. I created a full-window canvas with a scale factor based on the smaller window dimension (width or height) to simulate a 100×100 canvas by scale. The component variations — like the number of petals (which will later correspond to the number of rows) and the petal thickness (which will link to the number of columns) — are currently mapped to the mouse’s X and Y positions for experimentation.
-2. [Drafting for two-dimensional for loops (X, Y)](https://editor.p5js.org/xl6294/sketches/2wfSsoC7u)
-   - In this second sketch, I introduce another variation controlled by the mouse position, utilizing the dist() function to create a distance-based effect. The length of the petals, `eH`, now depends on the distance between the mouse and the center of each flower. Within a specific range, the closer the mouse is to the center, the shorter the petals become, eventually creating a larger central hole in the flower.
-3. [Drafting integration i](https://editor.p5js.org/xl6294/sketches/xV0v9_GYF)
+   - In this first sketch, I’m drafting the single motif element that will later appear in each grid cell with a `for loop`. I created a full-window canvas with a scale factor based on the smaller window dimension (width or height) to simulate a 100×100 canvas by scale. The component variations — like the number of petals (which will later correspond to the number of rows) and the petal thickness (which will link to the number of columns) — are currently mapped to the mouse’s X and Y positions for experimentation.
+2. [Drafting control by mouse position](https://editor.p5js.org/xl6294/sketches/2wfSsoC7u)
+   - In this sketch, I introduce another variation controlled by the mouse position, utilizing the `dist()` function to create a distance-based effect. The length of the petals, `eH`, now depends on the distance between the mouse and the center of each flower. Within a specific range, the closer the mouse is to the center, the shorter the petals become, eventually creating a larger central hole in the flower.
+3. [Drafting two-dimensional `for loops` (X, Y)](https://editor.p5js.org/xl6294/sketches/xV0v9_GYF)
+   - In this sketch, I’m drafting the 2D `for loops` to lay out the grid of flower motifs. I’ve backed out the scaling and returned each single-element motif to its original 100×100 size. I also relinked petal count and petal width from mouse position to their row/column positions. I used both calculation and guesswork when deciding what should stay linked vs. unlinked, and which values should remain fixed versus scaled.
 4. [Drafting integration ii](https://editor.p5js.org/xl6294/sketches/aevphcJ8f)
 5. [Interesting error which leads to final result](https://editor.p5js.org/xl6294/sketches/biFKRkiWc)
 6. [Final product (without pistil and placeholder grey flowers)](https://editor.p5js.org/xl6294/sketches/n2t3OMrHS)
