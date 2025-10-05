@@ -5,6 +5,7 @@ let numP; // number of petal arcs drawn per grid cell
 
 let windSpeed = 0; // assign this variable for rotation animation speed to '0' globally so the animation will pause instead of resetting when mouse is released
 let a; // variable altering eH when mouse is pressed/released
+let b; // variable controlling the opacity of only the grey hidden flower motifs
 
 function setup() {
   createCanvas(windowWidth, windowHeight); // full window canvas
@@ -44,7 +45,7 @@ function draw() {
           // formatted by Prettier
           dist(mouseX, mouseY, x + 50, y + 50), // note that the coords of the grid cell center is (x + 50, y + 50)
           0,
-          100 * sqrt(2), // this value controls the effective range of the cursor
+          100 * sqrt(2), // this value controls the effective range of the cursor // `sqrt()` from the JavaScript Math object https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
           0 - a,
           50 - a
         )
@@ -53,7 +54,7 @@ function draw() {
       // change the fill color and opacity diagonally
       fill(
         // formatted by Prettier
-        map(abs(x - y), 0, max(windowWidth, windowHeight), 0, 360), // hue changes from bottom-left to top-right
+        map(abs(x - y), 0, max(windowWidth, windowHeight), 0, 360), // hue changes from bottom-left to top-right // // `abs()` from the JavaScript Math object https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
         100,
         100,
         map(x + y, 0, windowWidth + windowHeight, 1, 0) //opacity decreases from top-left to bottom-right
