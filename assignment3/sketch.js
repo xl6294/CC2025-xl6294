@@ -64,9 +64,23 @@ function draw() {
   // t= map(millis() + 1, 1, 60, PI / 30, 2 * PI);
 
   // let r = map(t, PI / 30, 2 * PI, 4 * PI / 3, 5 * PI / 3);
-  let r = map(second(), 0, 59, (5.25 * PI) / 3, (6.75 * PI) / 3);
+  let r = map(abs(second() - 30), 0, 30, (5.25 * PI) / 3, (6.75 * PI) / 3);
 
+  // draw the circle that stands for sun or moon (red or blue)
+  // will travel along the path twice per minute
+  // first in red as the sun, then in blue as the moon
+  // so it's day and night
+  push();
+  if (second() < 30) {
+    fill("red");
+    r = 2 * PI - r;
+  } else {
+    fill("blue");
+  }
   circle(50 + 30 * sin(r), abs(-55 + 40 * cos(r)), 3);
+  pop();
 
+  // draw the circle that travels around the frame
+  // to symbolize the progression of a day
   circle(50 + 20 * sin(t), abs(-30 + 20 * cos(t)), 3);
 }
