@@ -17,12 +17,13 @@ function setup() {
 
   rectMode(CORNERS); // Change the rect() mode to rect(x1, y1, x2, y2)
 
-  let now = new Date();
-  ms = now.getMilliseconds();
+  // https://www.w3schools.com/jsref/jsref_getmilliseconds.asp
+  let d = new Date();
+  ms = d.getMilliseconds();
 }
 
 function draw() {
-  background("rgb(255,255,255)");
+  background("rgb(150,198,228)");
 
   scale(s);
 
@@ -34,11 +35,22 @@ function draw() {
   translate(50, 50);
 
   // will render the shade of illustration according to hour() function
-  // push();
-  // fill("rgba(77,51,51,0.3)");
-  // arc(0, 0, 100, 100, PI, 0); // Largest circle
-  // pop();
+  push();
 
+  if (second() < 30) {
+    noFill();
+  } else {
+    fill("rgba(0,50,80,0.62)");
+  }
+
+  arc(0, 0, 100, 100, PI, 0); // Largest circle
+  pop();
+
+  push();
+  strokeWeight(5);
+  stroke("white");
+  arc(0, 0, 32, 32, (7.5 * PI) / 12, (4.5 * PI) / 12);
+  pop();
   // rotate the month text circle
   // Negative angles rotate counterclockwise
   targetMr = -((month() - 1) * 2 * PI) / 12;
@@ -53,13 +65,15 @@ function draw() {
     // translate(50, 30);
     rotate((i * 2 * PI) / 12);
 
-    if (i + 1 === month()) {
-      // When true.
-      fill("red");
-    } else {
-      // When false.
-      fill("rgb(63,63,63)");
-    }
+    // if (i + 1 === month()) {
+    //   // When true.
+    //   fill("sienna");
+    // } else {
+    //   // When false.
+    //   fill("tan");
+    // }
+
+    fill("sienna");
 
     textFont("Courier New");
     textSize(3);
@@ -98,17 +112,15 @@ function draw() {
   noStroke();
 
   if (second() < 30) {
-    fill("red");
+    fill("orangered");
     r2 = 2 * PI - r2;
   } else {
-    fill("blue");
+    fill("mintcream");
   }
 
   circle(50 + 30 * sin(r2), abs(-55 + 36 * cos(r2)), 6);
 
   pop();
-
-  rect(28, 8, 72, 52); // Where the final canvas will crop
 
   // Drawing the frame here
 
@@ -139,6 +151,38 @@ function draw() {
   drawCornerFrame();
   pop();
 
+  push();
+  fill("beige");
+  noStroke();
+  beginShape();
+  vertex(0, 0);
+  vertex(100, 0);
+  vertex(100, 52);
+  vertex(72, 52);
+  vertex(72, 8);
+  vertex(28, 8);
+  vertex(28, 52);
+  vertex(0, 52);
+  endShape(CLOSE);
+  pop();
+
+  push();
+  fill("beige");
+  noStroke();
+  translate(100, 60);
+  rotate(PI);
+  beginShape();
+  vertex(0, -30);
+  vertex(100, -30);
+  vertex(100, 52);
+  vertex(72, 52);
+  vertex(72, 8);
+  vertex(28, 8);
+  vertex(28, 52);
+  vertex(0, 52);
+  endShape(CLOSE);
+  pop();
+
   // drawing the decorations (half circles) around the window frame
   // number of half circles depend on hour();
   for (i = 0; i < hour(); i++) {
@@ -159,7 +203,8 @@ function draw() {
   // to symbolize the progression of a day
   push();
   fill("teal");
-  circle(50 + 20 * sin(t), abs(-30 + 20 * cos(t)), 3);
+  stroke("beige");
+  circle(50 + 20 * sin(t), abs(-30 + 20 * cos(t)), 5);
 
   pop();
 }
