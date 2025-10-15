@@ -27,8 +27,8 @@ function draw() {
   scale(s);
 
   // Zoom
-  scale(1 / 0.44);
-  translate(-28, -8);
+  // scale(1 / 0.44);
+  // translate(-28, -8);
 
   push();
   translate(50, 50);
@@ -92,7 +92,7 @@ function draw() {
 
   let t = map(second() + 1, 1, 60, PI / 30, 2 * PI);
 
-  lerpSec = second() + (((millis() + ms) / 1000) % 1);
+  lerpSec = second() + (((millis() + ms - 1) / 1000) % 1);
 
   let r2 = map(abs(lerpSec - 30), 0, 30, (5.25 * PI) / 3, (6.75 * PI) / 3);
 
