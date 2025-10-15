@@ -36,8 +36,8 @@ function draw() {
   scale(s);
 
   // Zoom, disable the block below to see the entire planning
-  // scale(1 / 0.44);
-  // translate(-28, -8);
+  scale(1 / 0.44);
+  translate(-28, -8);
 
   // the pp block [`push()` … `pop()`] below draws the month ring/dial
   push();
@@ -70,18 +70,17 @@ function draw() {
   lerpMrAmount = constrain(lerpMrAmount, 0, 1);
   rotate(lerp(0, targetMr, lerpMrAmount));
 
+  // print the month abbr texts to the ring
   for (i = 0; i < 12; i++) {
     push();
-    // translate(50, 30);
     rotate((i * 2 * PI) / 12);
-
     fill("sienna");
-
+    // Reference link for the following text formatting:
+    // https://p5js.org/reference/p5/text/
     textFont("Courier New");
     textSize(3);
     textAlign(CENTER);
-    text(monthText(i), 0, -15);
-
+    text(monthText(i), 0, -15); // calling the `monthText()` function to turn `month()` into month abbrs
     pop();
   }
 
