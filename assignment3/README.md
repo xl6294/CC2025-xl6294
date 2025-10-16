@@ -1,61 +1,27 @@
-# template
+# Assignment 3: Abstract Clock
 
----
+## Overview
 
-This is a README file that can be used to describe and document your assignment.
+### Features
 
-Markdown Cheatsheet (from [https://www.markdownguide.org/cheat-sheet/](https://www.markdownguide.org/cheat-sheet/)):
+- Hour-based cloud bumps
+- Month dial/ring
+- Orbiting celestial body (sun/moon)
 
----
+### Used time functions:
 
-# Heading1
-## Heading2
-### Heading3
-#### Heading4
-##### Heading5
-###### Heading6
+- `month()`
+- `hour()`
+- `second()`
+- `millis()`
 
-**bold text**
+## Process + Links to Drafts on p5.js Web Editor
 
-*italicized text*
-
-~~strikethrough text~~
-
-Ordered List:
-1. First item
-2. Second item
-3. Third item
-
-Unordered List:
-- First item
-- Second item
-- Third item
-
-`short code block`
-
-```
-extended code block
-fun() {
-  return 0
-}
-```
-
-Link:  
-[linked text](https://www.example.com)
-
-
-Image with url:  
-![image description](https://dm-gy-6063-2024f-b.github.io/assets/homework/02/clark-espaco-modulado-00.jpg)
-
-
-Image on repo:  
-![image description](./file-name.jpg)
-
-
-To start a new line, add two spaces at the end of a line, like this:  
-this is a new line.
-
-
-To start a new paragraph, leave an empty line between two lines of text.
-
-This is a new paragraph.
+1. [Draft Sketch 1](https://editor.p5js.org/xl6294/sketches/CiFoX0z-d)
+   - First, I mapped out the overall composition that I had previously drafted in GeoGebra. (Somehow the GeoGebra composition wasn’t saved properly, so I don’t have a screenshot.) I then calculated the parametric coordinates for the ellipse and circular paths in order to animate objects along them.
+2. [Draft Sketch 2](https://editor.p5js.org/xl6294/sketches/PnBZlGCW8)
+   - Here, I experimented with adding zoom with `scale()` and `translate()` functions to ensure that the final view would focus and crop the square area of the setup canvas.
+3. [Draft Sketch 3](https://editor.p5js.org/xl6294/sketches/n317Jk4ds)
+   - Here, I began using `lerp()` on both the celestial circle (the sun/moon) and the month dial/ring. However, the looping didn’t behave ideally/smoothly for the celestial circle.
+4. [Draft Sketch 4](https://editor.p5js.org/xl6294/sketches/ZHeJDJeS_)
+   - Here, I explored how to achieve smoother motion for the celestial circle. Instead of using `lerp()` on the coords, I decided to "lerp" `second()` using `millis()`. I did have to sync `millis()` with `second()` using real-time milliseconds, so they refresh (turn "0") at the same time.
