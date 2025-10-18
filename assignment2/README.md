@@ -1,4 +1,4 @@
-# Assignment 2 — Generative Pattern
+# Assignment 2: Generative Pattern
 
 ## Overview
 

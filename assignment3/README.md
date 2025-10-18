@@ -2,18 +2,30 @@
 
 ## Overview
 
+For this assignment, I illustrated the recurring day and night cycle within a minute. The composition is a cloud frame revealing the changing sky based on time functions. Visual elements of the night phase were inspired by the Mid-Autumn Festival. [(p5.js Web Editor Version)](https://editor.p5js.org/xl6294/sketches/rwATkNll2)
+
 ### Features
 
 - Hour-based cloud bumps
 - Month dial/ring
 - Orbiting celestial body (sun/moon)
+- Dynamic sky shading
+- Night traveling rabbits
+
+IMPORTANT: if the animated objects are not moving smoothly, please refresh the page.
 
 ### Used time functions:
 
 - `month()`
+  - determines the current month to rotate the month ring
 - `hour()`
+  - determines the number of cloud bumps around the frame
 - `second()`
+  - divides a real-life minute into one circle of day and night phases
 - `millis()`
+  - smooths `second()` for continuous sun/moon movement
+- `day()`
+  - determines the number of rabbits crossing the bridge (month ring)
 
 ## Process + Links to Drafts on p5.js Web Editor
 
