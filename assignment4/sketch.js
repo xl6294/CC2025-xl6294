@@ -64,6 +64,10 @@ function mousePressed() {
 
     let r = random([0, 1, 2, 3]);
 
+    // when coloring the bots, I want each skin color
+    // to have a corresponding accent color
+    // therefore I use JavaScript object literal `{key: value}` (from office hours)
+    // to set up color pairs
     let colorPairs = [
       {
         tone: "#FFD400",
@@ -82,9 +86,6 @@ function mousePressed() {
         accent: "#DF3020",
       },
     ];
-
-    // let render = ["yellow", "pink"];
-    // let shade = ["orange", "red"];
 
     let tempRobot = new Robot(
       mouseX,
@@ -116,6 +117,11 @@ class Robot {
   }
 
   move() {
+    // the direction of the bot movement is determined by `facing`
+    // (`facing` also determines the direction of the nose)
+    // bots move horizontally, left or right
+    // when hitting the edge
+    // will appear again on the other edge and loop movement
     if (this.facing === "right") {
       this.x = (this.x + this.speed) % width;
     } else if (this.facing === "left") {
@@ -123,6 +129,7 @@ class Robot {
     }
   }
 
+  // below draws a shadow below each body of the bots
   drawShadow() {
     push();
     translate(this.x / s, this.y / s);
@@ -304,7 +311,7 @@ class Robot {
   }
 
   display() {
-    if (dist(mouseX, mouseY, this.x, this.y) < 100) {
+    if (dist(mouseX, mouseY, this.x, this.y) < 50) {
       this.hovering = true;
       this.shadow = "#8C28BD";
     } else {
