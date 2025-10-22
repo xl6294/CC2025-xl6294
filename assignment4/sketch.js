@@ -20,16 +20,23 @@ function draw() {
 
   scale(s);
 
-  //
+  // I want to illustrate the bots in a way that
+  // the smaller the y coord they have, the earlier they are drawn
+  // so on more backward layer
+  // basically creating a visual depth where higher characters (smaller y coord value)
+  // look more behind
+  // so I use `Array.sort` here to rearrange the items in the array
+  // everytime before drawing
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
   robots.sort((a, b) => a.y - b.y);
 
+  // drawing the shadows below each bot first
   for (let i = 0; i < robots.length; i++) {
     robots[i].move();
     robots[i].drawShadow();
     // robots[i].display();
   }
-
+  // drawing the bodies and then the expressions for each bot here
   for (let i = 0; i < robots.length; i++) {
     robots[i].move();
     // robots[i].drawShadow();

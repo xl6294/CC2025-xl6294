@@ -10,11 +10,17 @@
 
 ## Process + Links to Drafts on p5.js Web Editor
 
-1. [Draft Sketch 1](https://editor.p5js.org/xl6294/sketches/CiFoX0z-d)
+1. [Assignment 4 Body Types I](https://editor.p5js.org/xl6294/sketches/HdV97rZJVu)
    - ///
-2. [Draft Sketch 2](https://editor.p5js.org/xl6294/sketches/PnBZlGCW8)
+2. [Assignment 4 Body Types III](https://editor.p5js.org/xl6294/sketches/s9kVqHwjq)
    - ///
-3. [Draft Sketch 3](https://editor.p5js.org/xl6294/sketches/n317Jk4ds)
+3. [Assignment 4 Body Types IV](https://editor.p5js.org/xl6294/sketches/8o4zMLqtb)
    - ///
-4. [Draft Sketch 4](https://editor.p5js.org/xl6294/sketches/ZHeJDJeS_)
+4. [Assignment 4 Expressions](https://editor.p5js.org/xl6294/sketches/9V6QzKNGv)
+   - ///
+5. [Assignment 4 I](https://editor.p5js.org/xl6294/sketches/8F3_UrZuK)
+   - ///
+6. [Assignment 4 II](https://editor.p5js.org/xl6294/sketches/nEdQcDapO)
+   - ///
+7. [Assignment 4 III](https://editor.p5js.org/xl6294/sketches/UXtiHbbg4)
    - ///
