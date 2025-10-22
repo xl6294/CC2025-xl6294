@@ -27,7 +27,8 @@ function draw() {
   // look more behind
   // so I use `Array.sort` here to rearrange the items in the array
   // everytime before drawing
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+  // I somehow find a line of code from the following webpage and make it work
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#sorting_array_of_objects
   robots.sort((a, b) => a.y - b.y);
 
   // drawing the shadows below each bot first
@@ -311,6 +312,8 @@ class Robot {
   }
 
   display() {
+    // hovering over a bot will change its shadow color
+    // (the change is set to not very drastic right now)
     if (dist(mouseX, mouseY, this.x, this.y) < 50) {
       this.hovering = true;
       this.shadow = "#8C28BD";
