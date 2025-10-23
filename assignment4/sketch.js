@@ -17,40 +17,47 @@ function draw() {
   scale(s);
 
   for (let i = 0; i < robots.length; i++) {
-    robots[i].move();
-    robots[i].getMidY();
+    robots[i].move(); // animate the bots
+    robots[i].getMidY(); // calculate the y coords of visual center/anchor points of the bots
   }
 
   // I want to illustrate the bots in a way that
   // the smaller the y coord they have, the earlier they are drawn
   // so on more backward layer
-  // basically creating a visual depth where higher characters (smaller y coord value)
-  // look more behind
+  // basically creating a visual depth where higher bots
+  // (with smaller midY coord value) would look more behind
   // so I use `Array.sort` here to rearrange the items in the array
   // everytime before drawing
   // I somehow find a line of code from the following webpage and make it work
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#sorting_array_of_objects
   robots.sort((a, b) => a.midY - b.midY);
 
-  // drawing the shadows below each bot first
+  // the two for loops below draw all the shadows before illustrate all the bots
+  // I did this so that all the shadows appear "on the ground"
+  // (none of the shadows will overlap other bots even if they are right behind)
+  // below draws the shadows below each bot first
   for (let i = 0; i < robots.length; i++) {
-    // robots[i].move();
     robots[i].drawShadow();
-    // robots[i].display();
   }
-
-  // drawing the bodies and then the expressions for each bot here
+  // below draws the bodies and then the expressions for each bot here
   for (let i = 0; i < robots.length; i++) {
-    // robots[i].move();
-    // robots[i].drawShadow();
     robots[i].display();
   }
 }
 
+// when mouse is pressed,
+// if the cursor hovers over any bot, the bot will be deleted using Array.splice()
+// if the cursor does not hover over any bot,
+// all the random class parameters will be assigned a random value
+// a new robot object will be created and push to the `robots` array
 function mousePressed() {
   let amIHovering = false;
 
-  //https://www.w3docs.com/snippets/javascript/how-to-loop-through-array-and-remove-items-without-breaking-the-for-loop.html?utm_source=chatgpt.com
+  // when loop through the array and removing items
+  // I found the forward iteration sometimes misses when clicking at two bots at the same time
+  // from the link below, I realized that I should do the operation backwards
+  // so no item will be skipped when the array updates after one splice()
+  // https://www.w3docs.com/snippets/javascript/how-to-loop-through-array-and-remove-items-without-breaking-the-for-loop.html?utm_source=chatgpt.com
   for (let i = robots.length - 1; i >= 0; i--) {
     if (robots[i].hovering == true) {
       robots.splice(i, 1);
@@ -59,6 +66,7 @@ function mousePressed() {
   }
 
   if (amIHovering == false) {
+    // using random() and mini arrays to assign types, etc.
     let randomType = random(["a", "b", "c", "d"]);
     let randomFacing = random(["left", "right"]);
     let randomEyes = random(["points", "dashes", "lashes"]);
@@ -89,6 +97,7 @@ function mousePressed() {
 
     let r = floor(random(colorPairs.length));
 
+    // create a new robot object
     let tempRobot = new Robot(
       mouseX,
       mouseY,
@@ -99,39 +108,42 @@ function mousePressed() {
       randomEyes,
       randomMouth
     );
+    // add the new bot to the `robots` array
     robots.push(tempRobot);
   }
 }
 
 class Robot {
   constructor(x, y, facing, render, shade, type, eyes, mouth) {
+    // coords mainly used in translate()
     this.x = x;
     this.y = y;
 
-    this.facing = facing;
+    this.facing = facing; // determines the direction of the nose and movement for each bot
 
-    this.render = render;
-    this.shade = shade;
+    this.render = render; // bot main/face color
+    this.shade = shade; // bot accent/shade color
 
-    this.type = type;
+    this.type = type; // body shapes/compositions
 
-    this.eyes = eyes;
-    this.mouth = mouth;
+    this.eyes = eyes; // eye shapes
+    this.mouth = mouth; // mouth shapes
 
-    this.shadow = "#4F136C";
+    this.shadow = "#4F136C"; // shadow color
     this.speed = 0.5;
-    this.midY;
-    this.hovering = false;
+    this.midY; // will calculate and store the y coords of visual center/anchor points of the bots
+    this.hovering = false; // default
   }
 
+  // the method below will calculate the y coords of visual center/anchor points of the bots
+  // and store in this.midY
+  // sin type "a" and "b" respectively have different height from the rest
   getMidY() {
     if (this.type === "a") {
       this.midY = this.y + 2.5 * s;
     } else if (this.type === "b") {
       this.midY = this.y - 0.25 * s;
-    } else if (this.type === "c") {
-      this.midY = this.y;
-    } else if (this.type === "d") {
+    } else {
       this.midY = this.y;
     }
   }
