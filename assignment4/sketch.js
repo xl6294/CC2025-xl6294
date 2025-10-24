@@ -97,7 +97,7 @@ function mousePressed() {
 
     let r = floor(random(colorPairs.length));
 
-    // create a new robot object
+    // create a new robot object (at mouse position)
     let tempRobot = new Robot(
       mouseX,
       mouseY,
@@ -137,7 +137,9 @@ class Robot {
 
   // the method below will calculate the y coords of visual center/anchor points of the bots
   // and store in this.midY
-  // sin type "a" and "b" respectively have different height from the rest
+  // since the face circle of type "a" bots are at top,
+  // and the type "b" bots are shorter,
+  // their `this.midY` are corrected
   getMidY() {
     if (this.type === "a") {
       this.midY = this.y + 2.5 * s;
@@ -153,7 +155,8 @@ class Robot {
     // (`facing` also determines the direction of the nose)
     // bots move horizontally, left or right
     // when hitting the edge
-    // will appear again on the other edge and loop movement
+    // bots will appear again on the other edge and loop movement
+    // (wonder if there is a function specifically for wrapped movement)
     if (this.facing === "right") {
       this.x = (this.x + this.speed) % width;
     } else if (this.facing === "left") {
@@ -167,140 +170,132 @@ class Robot {
     translate(this.x / s, this.y / s);
     scale(0.1);
 
+    // since the face circle of type "a" bots are at top,
+    // and the type "b" bots are shorter,
+    // their "translate()" values are different
+    // when drawing the shadow circles
     if (this.type == "a") {
       push();
-
       translate(0, 75);
-
       noStroke();
-
       fill(this.shadow);
       ellipse(0, 0, 100, 30);
-
       pop();
     } else if (this.type == "b") {
       push();
-
       translate(0, 45);
-
       noStroke();
-
       fill(this.shadow);
       ellipse(0, 0, 100, 30);
-
       pop();
     } else {
       push();
-
       translate(0, 50);
-
       noStroke();
-
       fill(this.shadow);
       ellipse(0, 0, 100, 30);
-
       pop();
     }
 
     pop();
   }
 
+  // below draws the body of the bots
+  // where center of the face circles is the mouse position when clicked
+  // depending on `randomType` => `this.type`
   drawBody() {
     if (this.type == "a") {
       push();
-
       translate(0, 25);
-
       noStroke();
-
+      // bottom circle
       fill(this.render);
       circle(0, 25, 50);
-
+      // middle circles (body and arms)
       fill(this.shade);
       circle(-25, 0, 50);
       circle(0, 0, 50);
       circle(25, 0, 50);
-
-      // head
+      // face circle
       fill(this.render);
       circle(0, -25, 50);
-
       pop();
     } else if (this.type == "b") {
       push();
-
       noStroke();
-
+      // bottom circles
       fill(this.shade);
       circle(-25, 20, 50);
       circle(25, 20, 50);
-
-      // head
+      // face circle
       fill(this.render);
       circle(0, 0, 50);
-
+      // top (hair) circles
       fill(this.shade);
       circle(-15, -25, 50);
       circle(15, -25, 50);
-
       pop();
     } else if (this.type == "c") {
       push();
-
       noStroke();
-
+      // bottom circles
       fill(this.shade);
       circle(-25, 25, 50);
       circle(25, 25, 50);
-
-      // head
+      // face circle
       fill(this.render);
       circle(0, 0, 50);
-
+      // top (hair) circles
       fill(this.shade);
       circle(-25, -25, 50);
       circle(25, -25, 50);
       circle(0, -15, 20);
-
       pop();
     } else if (this.type == "d") {
       push();
-
       noStroke();
-
+      // middle non-head circles
       fill(this.shade);
       circle(-25, 0, 50);
       circle(25, 0, 50);
-
+      // top and bottom darker circles
       fill(this.render);
       circle(25, -25, 50);
       circle(-25, 25, 50);
-
+      // top and bottom lighter circles
       fill(this.shade);
       circle(0, -25, 50);
       circle(0, 25, 50);
       circle(-25, -25, 50);
       circle(25, 25, 50);
-
-      // head
+      // face circle
       fill(this.render);
       circle(0, 0, 50);
-
       pop();
     }
   }
 
+  // below draws the expression of the bots
+  // over the the face circles
+  // (the eyes are at the middle level of the face circles)
+  // using `point()`, `line()`,
+  // `arc()`, `beginShape()` and `endShape()` with `noFill()`
+  // so they are mainly controlled by `stroke()` and `strokeWeight()`
+  // different from the body circles
   drawExpression() {
     push();
 
-    // translate(50, 50);
+    // below is the drawing testing guide
+    // which draws the circle at the face circle
+    // circle(0, 0, 50);
 
-    // circle(0, 0, 50); // guide
-
+    // I do not want the nose corners to be sharp
+    // so below I use `strokeJoin(ROUND)`
+    // from https://p5js.org/reference/p5/strokeJoin/
     strokeJoin(ROUND);
 
-    // eyes
-
+    // below draws the eyes of the bot
+    // depending on `randomEyes` => `this.eyes`
     if (this.eyes === "points") {
       // ver 1
       strokeWeight(5);
@@ -321,8 +316,8 @@ class Robot {
       line(4, -3, 7, 0);
     }
 
-    // mouth
-
+    // below draws the mouth of the bot
+    // depending on `randomMouth` => `this.mouth`
     if (this.mouth === "smile") {
       // ver 1
       strokeWeight(3);
@@ -335,7 +330,8 @@ class Robot {
       line(-10, 18, 10, 18);
     }
 
-    // nose
+    // below draws the nose of the bot
+    // depending on `randomFacing` => `this.facing`
     if (this.facing === "right") {
       beginShape();
       vertex(0, 5);
@@ -355,7 +351,7 @@ class Robot {
 
   display() {
     // hovering over a bot will change its shadow color
-    // (the change is set to not very drastic right now)
+    // (the change is set to be not very drastic right now)
     if (dist(mouseX, mouseY, this.x, this.midY) < 7 * s) {
       this.hovering = true;
       this.shadow = "#8C28BD";
