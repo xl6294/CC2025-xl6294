@@ -276,16 +276,16 @@ function draw() {
   //   circle(-25 * ((lerpSec + 12) % 16), 0, 50); // 2nd
   //   pop();
 
-  push();
-  fill("black");
-  text(lerP, -50, -50);
-  text(second(), -50, -40);
-  pop();
+  // push();
+  // fill("black");
+  // text(lerP, -50, -50);
+  // text(second(), -50, -40);
+  // pop();
 
-  push();
-  stroke("black");
-  rect(-200, -200, 200, 200);
-  pop();
+  // push();
+  // stroke("black");
+  // rect(-200, -200, 200, 200);
+  // pop();
 }
 
 function Circle(x, y, d) {
