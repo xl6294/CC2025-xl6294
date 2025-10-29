@@ -34,9 +34,9 @@ function draw() {
   d = new Date();
   ms = d.getMilliseconds();
 
-  lerpSec = second() + ms / 1000;
+  // lerpSec = second() + ms / 1000;
   // lerpSec = (second() + 20 + ((ms / 1000) % 1)) % 60;
-  // lerpSec = (second() + 40 + ((ms / 1000) % 1)) % 60;
+  lerpSec = (second() + 40 + ((ms / 1000) % 1)) % 60;
 
   translate(200, 200);
   scale(3);
