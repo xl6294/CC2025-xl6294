@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Three Sketches Side by Side</title>
+
+    <!-- p5.js libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/addons/p5.sound.min.js"></script>
+
+    <!-- external stylesheet -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <style>
+      /* Add this inline style if you want to quickly adjust layout */
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        background: #eee;
+      }
+
+      main {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      canvas {
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div id="sketch1"></div>
+      <div id="sketch2"></div>
+      <div id="sketch3"></div>
+    </main>
+
+    <!-- three separate instance-mode sketches -->
+    <script src="Sketch1.js"></script>
+    <script src="Sketch2.js"></script>
+    <script src="Sketch3.js"></script>
+  </body>
+</html>

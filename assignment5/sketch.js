@@ -2,16 +2,6 @@ let d;
 let lerpSec;
 let lerP;
 
-let xRobotPosX = 200; // center x
-let xRobotPosY = 200; // center y
-let xRobotFacing = "right"; // "right"
-let xRobotType = "a"; // "a"
-let xRobotEyes = "points"; // "points"
-let xRobotMouth = "smile"; // "smile"
-let xRobotTone = "#FFD400"; // main color
-let xRobotAccent = "#FF8C1A"; // accent color
-let xRobotShadow = "#4F136C"; // shadow color
-
 let colorPairs = [
   {
     tone: "#FFD400",
@@ -44,7 +34,7 @@ function draw() {
   d = new Date();
   ms = d.getMilliseconds();
 
-  lerpSec = second() + ((ms / 1000) % 1);
+  lerpSec = second() + ms / 1000;
   // lerpSec = (second() + 20 + ((ms / 1000) % 1)) % 60;
   // lerpSec = (second() + 40 + ((ms / 1000) % 1)) % 60;
 
@@ -64,6 +54,28 @@ function draw() {
     // face circle
     fill(colorPairs[0].tone);
     Circle(0, 0, 50);
+
+    // expression
+    push();
+    strokeJoin(ROUND);
+    stroke("black");
+    // pointed eyes
+    strokeWeight(5);
+    point(-7, 0);
+    point(7, 0);
+    // smiling mouth
+    strokeWeight(3);
+    noFill();
+    arc(0, 0, 40, 40, PI / 3, (2 * PI) / 3, OPEN);
+    // left facing nose
+    strokeWeight(3);
+    beginShape();
+    vertex(0, 5);
+    vertex(-5, 10);
+    vertex(0, 10);
+    endShape();
+    pop();
+
     // top (hair) circles
     fill(colorPairs[0].accent);
     Circle(-15, -25, 50);
@@ -79,6 +91,28 @@ function draw() {
     // face circle
     fill(colorPairs[1].tone);
     Circle(0, 0, 50);
+
+    // expression
+    push();
+    strokeJoin(ROUND);
+    stroke("black");
+    // dash eyes
+    strokeWeight(3);
+    line(-10, 0, -7, 0);
+    line(7, 0, 10, 0);
+    // neutral mouth
+    strokeWeight(3);
+    noFill();
+    line(-10, 18, 10, 18);
+    // left facing nose
+    strokeWeight(3);
+    beginShape();
+    vertex(0, 5);
+    vertex(-5, 10);
+    vertex(0, 10);
+    endShape();
+    pop();
+
     // top (hair) circles
     fill(colorPairs[1].accent);
     Circle(-25, -25, 50);
@@ -105,6 +139,31 @@ function draw() {
     // face circle
     fill(colorPairs[2].tone);
     Circle(0, 0, 50);
+
+    // expression
+    push();
+    strokeJoin(ROUND);
+    stroke("black");
+    // eyes with lashes
+    strokeWeight(5);
+    point(-7, 0);
+    point(7, 0);
+    strokeWeight(3);
+    line(-10, -3, -7, 0);
+    line(4, -3, 7, 0);
+    // smiling mouth
+    strokeWeight(3);
+    noFill();
+    arc(0, 0, 40, 40, PI / 3, (2 * PI) / 3, OPEN);
+    // left facing nose
+    strokeWeight(3);
+    beginShape();
+    vertex(0, 5);
+    vertex(-5, 10);
+    vertex(0, 10);
+    endShape();
+    pop();
+
     pop();
   }
 
@@ -134,6 +193,30 @@ function draw() {
     push();
     fill(colorPairs[2].tone);
     circle(400 - 25 * ((lerpSec + 4) % 16), 0, 50);
+    translate(400 - 25 * ((lerpSec + 4) % 16), 0);
+    // expression
+    push();
+    strokeJoin(ROUND);
+    stroke("black");
+    // eyes with lashes
+    strokeWeight(5);
+    point(-7, 0);
+    point(7, 0);
+    strokeWeight(3);
+    line(-10, -3, -7, 0);
+    line(4, -3, 7, 0);
+    // smiling mouth
+    strokeWeight(3);
+    noFill();
+    arc(0, 0, 40, 40, PI / 3, (2 * PI) / 3, OPEN);
+    // left facing nose
+    strokeWeight(3);
+    beginShape();
+    vertex(0, 5);
+    vertex(-5, 10);
+    vertex(0, 10);
+    endShape();
+    pop();
     pop();
   }
 
@@ -151,6 +234,30 @@ function draw() {
     push();
     fill(colorPairs[2].tone);
     circle(-25 * ((lerpSec + 8) % 16), 0, 50);
+    translate(-25 * ((lerpSec + 8) % 16), 0);
+    // expression
+    push();
+    strokeJoin(ROUND);
+    stroke("black");
+    // eyes with lashes
+    strokeWeight(5);
+    point(-7, 0);
+    point(7, 0);
+    strokeWeight(3);
+    line(-10, -3, -7, 0);
+    line(4, -3, 7, 0);
+    // smiling mouth
+    strokeWeight(3);
+    noFill();
+    arc(0, 0, 40, 40, PI / 3, (2 * PI) / 3, OPEN);
+    // left facing nose
+    strokeWeight(3);
+    beginShape();
+    vertex(0, 5);
+    vertex(-5, 10);
+    vertex(0, 10);
+    endShape();
+    pop();
     pop();
   }
 
