@@ -6,5 +6,5 @@
     "*.js",
     "**/*.js",
     "./global.d.ts"
-, "../../../Downloads/p5MapperWorkshop/sketch1.js"  ]
+, "../../../Downloads/p5MapperWorkshop/sketch.js"  ]
 }
