@@ -22,7 +22,7 @@ let noiseR = 0;
 let noiseT = 0;
 let radius = 500;
 
-xl vars
+// xl vars
 let d;
 let lerpSec;
 let lerP;
@@ -71,7 +71,7 @@ function draw() {
   // quadRight.displaySketch(myOtherSketch);
 
   quadYH1.displaySketch(yhSketch);
-  quadXL1.displaySketch(yhSketch);
+  quadXL1.displaySketch(xlSketch);
   quadYL1.displaySketch(ylSketch);
 }
 
@@ -172,252 +172,249 @@ function ylSketch(pg) {
 //   pg.circle(lerP * x, lerP * y, d);
 // }
 
-// function xlSketch(pg) {
-//   pg.clear();
-//   pg.push();
-//   // your mini sketch goes here!
+function xlSketch(pg) {
+  pg.clear();
+  pg.push();
+  // your mini sketch goes here!
 
-//   pg.noFill();
-//   pg.noStroke();
-//   pg.rectMode(CORNERS);
+  pg.noFill();
+  pg.noStroke();
+  pg.rectMode(CORNERS);
 
-//   d = new Date();
-//   ms = d.getMilliseconds();
+  d = new Date();
+  ms = d.getMilliseconds();
 
-//   lerpSec = second() + ms / 1000;
-//   // lerpSec = (second() + 20 + ((ms / 1000) % 1)) % 60;
-//   // lerpSec = (second() + 40 + ((ms / 1000) % 1)) % 60;
+  lerpSec = second() + ms / 1000;
+  // lerpSec = (second() + 20 + ((ms / 1000) % 1)) % 60;
+  // lerpSec = (second() + 40 + ((ms / 1000) % 1)) % 60;
 
-//   function Circle(x, y, d) {
-//     lerP = pg.constrain(0.5 - 1.5 * cos(((lerpSec % 20) * PI) / 10), 0, 1);
-//     pg.circle(lerP * x, lerP * y, d);
-//   }
+  lerP = constrain(0.5 - 1.5 * cos(((lerpSec % 20) * PI) / 10), 0, 1);
 
-//   pg.translate(200, 200);
-//   pg.scale(3);
+  pg.translate(200, 200);
+  pg.scale(3);
 
-//   pg.background("white");
+  pg.background("white");
 
-//   if (lerpSec >= 0 && lerpSec < 20) {
-//     pg.push();
-//     pg.noStroke();
-//     // translate(200, 200);
-//     // bottom circles
-//     pg.fill(colorPairs[0].accent);
-//     pg.Circle(-25, 20, 50);
-//     pg.Circle(25, 20, 50);
-//     // face circle
-//     pg.fill(colorPairs[0].tone);
-//     pg.Circle(0, 0, 50);
+  if (lerpSec >= 0 && lerpSec < 20) {
+    pg.push();
+    pg.noStroke();
+    // translate(200, 200);
+    // bottom circles
+    pg.fill(colorPairs[0].accent);
+    pg.circle(-25, 20, 50);
+    pg.circle(25, 20, 50);
+    // face circle
+    pg.fill(colorPairs[0].tone);
+    pg.circle(0, 0, 50);
 
-//     // expression
-//     pg.push();
-//     pg.strokeJoin(ROUND);
-//     pg.stroke("black");
-//     // pointed eyes
-//     pg.strokeWeight(5);
-//     pg.point(-7, 0);
-//     pg.point(7, 0);
-//     // smiling mouth
-//     pg.strokeWeight(3);
-//     pg.noFill();
-//     pg.arc(0, 0, 40, 40, PI / 3, (2 * PI) / 3, OPEN);
-//     // left facing nose
-//     pg.strokeWeight(3);
-//     pg.beginShape();
-//     pg.vertex(0, 5);
-//     pg.vertex(-5, 10);
-//     pg.vertex(0, 10);
-//     pg.endShape();
-//     pg.pop();
+    // expression
+    pg.push();
+    pg.strokeJoin(ROUND);
+    pg.stroke("black");
+    // pointed eyes
+    pg.strokeWeight(5);
+    pg.point(-7, 0);
+    pg.point(7, 0);
+    // smiling mouth
+    pg.strokeWeight(3);
+    pg.noFill();
+    pg.arc(0, 0, 40, 40, PI / 3, (2 * PI) / 3, OPEN);
+    // left facing nose
+    pg.strokeWeight(3);
+    pg.beginShape();
+    pg.vertex(0, 5);
+    pg.vertex(-5, 10);
+    pg.vertex(0, 10);
+    pg.endShape();
+    pg.pop();
 
-//     // top (hair) circles
-//     pg.fill(colorPairs[0].accent);
-//     pg.Circle(-15, -25, 50);
-//     pg.Circle(15, -25, 50);
-//     pg.pop();
-//   } else if (lerpSec >= 20 && lerpSec < 40) {
-//     pg.push();
-//     pg.noStroke();
-//     // bottom circles
-//     pg.fill(colorPairs[1].accent);
-//     pg.Circle(-25, 25, 50);
-//     pg.Circle(25, 25, 50);
-//     // face circle
-//     pg.fill(colorPairs[1].tone);
-//     pg.Circle(0, 0, 50);
+    // top (hair) circles
+    pg.fill(colorPairs[0].accent);
+    pg.circle(-15, -25, 50);
+    pg.circle(15, -25, 50);
+    pg.pop();
+  } else if (lerpSec >= 20 && lerpSec < 40) {
+    pg.push();
+    pg.noStroke();
+    // bottom circles
+    pg.fill(colorPairs[1].accent);
+    pg.circle(-25, 25, 50);
+    pg.circle(25, 25, 50);
+    // face circle
+    pg.fill(colorPairs[1].tone);
+    pg.circle(0, 0, 50);
 
-//     // expression
-//     pg.push();
-//     pg.strokeJoin(ROUND);
-//     pg.stroke("black");
-//     // dash eyes
-//     pg.strokeWeight(3);
-//     pg.line(-10, 0, -7, 0);
-//     pg.line(7, 0, 10, 0);
-//     // neutral mouth
-//     pg.strokeWeight(3);
-//     pg.noFill();
-//     pg.line(-10, 18, 10, 18);
-//     // left facing nose
-//     pg.strokeWeight(3);
-//     pg.beginShape();
-//     pg.vertex(0, 5);
-//     pg.vertex(-5, 10);
-//     pg.vertex(0, 10);
-//     pg.endShape();
-//     pg.pop();
+    // expression
+    pg.push();
+    pg.strokeJoin(ROUND);
+    pg.stroke("black");
+    // dash eyes
+    pg.strokeWeight(3);
+    pg.line(-10, 0, -7, 0);
+    pg.line(7, 0, 10, 0);
+    // neutral mouth
+    pg.strokeWeight(3);
+    pg.noFill();
+    pg.line(-10, 18, 10, 18);
+    // left facing nose
+    pg.strokeWeight(3);
+    pg.beginShape();
+    pg.vertex(0, 5);
+    pg.vertex(-5, 10);
+    pg.vertex(0, 10);
+    pg.endShape();
+    pg.pop();
 
-//     // top (hair) circles
-//     pg.fill(colorPairs[1].accent);
-//     pg.Circle(-25, -25, 50);
-//     pg.Circle(25, -25, 50);
-//     pg.Circle(0, -15, 20);
-//     pg.pop();
-//   } else if (lerpSec >= 40 && lerpSec < 60) {
-//     pg.push();
-//     pg.noStroke();
-//     // middle non-head circles
-//     pg.fill(colorPairs[2].accent);
-//     pg.Circle(-25, 0, 50);
-//     pg.Circle(25, 0, 50);
-//     // top and bottom darker circles
-//     pg.fill(colorPairs[2].tone);
-//     pg.Circle(25, -25, 50);
-//     pg.Circle(-25, 25, 50);
-//     // top and bottom lighter circles
-//     pg.fill(colorPairs[2].accent);
-//     pg.Circle(0, -25, 50);
-//     pg.Circle(0, 25, 50);
-//     pg.Circle(-25, -25, 50);
-//     pg.Circle(25, 25, 50);
-//     // face circle
-//     pg.fill(colorPairs[2].tone);
-//     pg.Circle(0, 0, 50);
+    // top (hair) circles
+    pg.fill(colorPairs[1].accent);
+    pg.circle(-25, -25, 50);
+    pg.circle(25, -25, 50);
+    pg.circle(0, -15, 20);
+    pg.pop();
+  } else if (lerpSec >= 40 && lerpSec < 60) {
+    pg.push();
+    pg.noStroke();
+    // middle non-head circles
+    pg.fill(colorPairs[2].accent);
+    pg.circle(-25, 0, 50);
+    pg.circle(25, 0, 50);
+    // top and bottom darker circles
+    pg.fill(colorPairs[2].tone);
+    pg.circle(25, -25, 50);
+    pg.circle(-25, 25, 50);
+    // top and bottom lighter circles
+    pg.fill(colorPairs[2].accent);
+    pg.circle(0, -25, 50);
+    pg.circle(0, 25, 50);
+    pg.circle(-25, -25, 50);
+    pg.circle(25, 25, 50);
+    // face circle
+    pg.fill(colorPairs[2].tone);
+    pg.circle(0, 0, 50);
 
-//     // expression
-//     pg.push();
-//     pg.strokeJoin(ROUND);
-//     pg.stroke("black");
-//     // eyes with lashes
-//     pg.strokeWeight(5);
-//     pg.point(-7, 0);
-//     pg.point(7, 0);
-//     pg.strokeWeight(3);
-//     pg.line(-10, -3, -7, 0);
-//     pg.line(4, -3, 7, 0);
-//     // smiling mouth
-//     pg.strokeWeight(3);
-//     pg.noFill();
-//     pg.arc(0, 0, 40, 40, PI / 3, (2 * PI) / 3, OPEN);
-//     // left facing nose
-//     pg.strokeWeight(3);
-//     pg.beginShape();
-//     pg.vertex(0, 5);
-//     pg.vertex(-5, 10);
-//     pg.vertex(0, 10);
-//     pg.endShape();
-//     pg.pop();
+    // expression
+    pg.push();
+    pg.strokeJoin(ROUND);
+    pg.stroke("black");
+    // eyes with lashes
+    pg.strokeWeight(5);
+    pg.point(-7, 0);
+    pg.point(7, 0);
+    pg.strokeWeight(3);
+    pg.line(-10, -3, -7, 0);
+    pg.line(4, -3, 7, 0);
+    // smiling mouth
+    pg.strokeWeight(3);
+    pg.noFill();
+    pg.arc(0, 0, 40, 40, PI / 3, (2 * PI) / 3, OPEN);
+    // left facing nose
+    pg.strokeWeight(3);
+    pg.beginShape();
+    pg.vertex(0, 5);
+    pg.vertex(-5, 10);
+    pg.vertex(0, 10);
+    pg.endShape();
+    pg.pop();
 
-//     pg.pop();
-//   }
+    pg.pop();
+  }
 
-//   if (
-//     (lerpSec >= 0 && lerpSec <= 4) ||
-//     (lerpSec >= 16 && lerpSec <= 24) ||
-//     (lerpSec >= 36 && lerpSec <= 44) ||
-//     (lerpSec >= 56 && lerpSec <= 60)
-//   ) {
-//     pg.push();
-//     pg.fill("white");
-//     pg.rect(-200, -200, 200, 200);
-//     pg.pop();
-//   }
+  if (
+    (lerpSec >= 0 && lerpSec <= 4) ||
+    (lerpSec >= 16 && lerpSec <= 24) ||
+    (lerpSec >= 36 && lerpSec <= 44) ||
+    (lerpSec >= 56 && lerpSec <= 60)
+  ) {
+    pg.push();
+    pg.fill("white");
+    pg.rect(-200, -200, 200, 200);
+    pg.pop();
+  }
 
-//   if (lerpSec >= 0 && lerpSec <= 5) {
-//     pg.push();
-//     pg.fill(colorPairs[0].accent);
-//     pg.circle(400 - 25 * ((lerpSec + 12) % 16), 0, 50);
-//     pg.pop();
-//   } else if (lerpSec >= 20 && lerpSec <= 25) {
-//     pg.push();
-//     pg.fill(colorPairs[1].accent);
-//     pg.circle(400 - 25 * ((lerpSec + 8) % 16), 0, 50);
-//     pg.pop();
-//   } else if (lerpSec >= 40 && lerpSec <= 45) {
-//     pg.push();
-//     pg.fill(colorPairs[2].tone);
-//     pg.circle(400 - 25 * ((lerpSec + 4) % 16), 0, 50);
-//     pg.translate(400 - 25 * ((lerpSec + 4) % 16), 0);
-//     // expression
-//     pg.push();
-//     pg.strokeJoin(ROUND);
-//     pg.stroke("black");
-//     // eyes with lashes
-//     pg.strokeWeight(5);
-//     pg.point(-7, 0);
-//     pg.point(7, 0);
-//     pg.strokeWeight(3);
-//     pg.line(-10, -3, -7, 0);
-//     pg.line(4, -3, 7, 0);
-//     // smiling mouth
-//     pg.strokeWeight(3);
-//     pg.noFill();
-//     pg.arc(0, 0, 40, 40, PI / 3, (2 * PI) / 3, OPEN);
-//     // left facing nose
-//     pg.strokeWeight(3);
-//     pg.beginShape();
-//     pg.vertex(0, 5);
-//     pg.vertex(-5, 10);
-//     pg.vertex(0, 10);
-//     pg.endShape();
-//     pg.pop();
-//     pg.pop();
-//   }
+  if (lerpSec >= 0 && lerpSec <= 5) {
+    pg.push();
+    pg.fill(colorPairs[0].accent);
+    pg.circle(400 - 25 * ((lerpSec + 12) % 16), 0, 50);
+    pg.pop();
+  } else if (lerpSec >= 20 && lerpSec <= 25) {
+    pg.push();
+    pg.fill(colorPairs[1].accent);
+    pg.circle(400 - 25 * ((lerpSec + 8) % 16), 0, 50);
+    pg.pop();
+  } else if (lerpSec >= 40 && lerpSec <= 45) {
+    pg.push();
+    pg.fill(colorPairs[2].tone);
+    pg.circle(400 - 25 * ((lerpSec + 4) % 16), 0, 50);
+    pg.translate(400 - 25 * ((lerpSec + 4) % 16), 0);
+    // expression
+    pg.push();
+    pg.strokeJoin(ROUND);
+    pg.stroke("black");
+    // eyes with lashes
+    pg.strokeWeight(5);
+    pg.point(-7, 0);
+    pg.point(7, 0);
+    pg.strokeWeight(3);
+    pg.line(-10, -3, -7, 0);
+    pg.line(4, -3, 7, 0);
+    // smiling mouth
+    pg.strokeWeight(3);
+    pg.noFill();
+    pg.arc(0, 0, 40, 40, PI / 3, (2 * PI) / 3, OPEN);
+    // left facing nose
+    pg.strokeWeight(3);
+    pg.beginShape();
+    pg.vertex(0, 5);
+    pg.vertex(-5, 10);
+    pg.vertex(0, 10);
+    pg.endShape();
+    pg.pop();
+    pg.pop();
+  }
 
-//   if (lerpSec >= 15 && lerpSec <= 20) {
-//     pg.push();
-//     pg.fill(colorPairs[0].accent);
-//     pg.circle(-25 * (lerpSec % 16), 0, 50);
-//     pg.pop();
-//   } else if (lerpSec >= 35 && lerpSec <= 40) {
-//     pg.push();
-//     pg.fill(colorPairs[1].accent);
-//     pg.circle(-25 * ((lerpSec + 12) % 16), 0, 50);
-//     pg.pop();
-//   } else if (lerpSec >= 55 && lerpSec <= 60) {
-//     pg.push();
-//     pg.fill(colorPairs[2].tone);
-//     pg.circle(-25 * ((lerpSec + 8) % 16), 0, 50);
-//     pg.translate(-25 * ((lerpSec + 8) % 16), 0);
-//     // expression
-//     pg.push();
-//     pg.strokeJoin(ROUND);
-//     pg.stroke("black");
-//     // eyes with lashes
-//     pg.strokeWeight(5);
-//     pg.point(-7, 0);
-//     pg.point(7, 0);
-//     pg.strokeWeight(3);
-//     pg.line(-10, -3, -7, 0);
-//     pg.line(4, -3, 7, 0);
-//     // smiling mouth
-//     pg.strokeWeight(3);
-//     pg.noFill();
-//     pg.arc(0, 0, 40, 40, PI / 3, (2 * PI) / 3, OPEN);
-//     // left facing nose
-//     pg.strokeWeight(3);
-//     pg.beginShape();
-//     pg.vertex(0, 5);
-//     pg.vertex(-5, 10);
-//     pg.vertex(0, 10);
-//     pg.endShape();
-//     pg.pop();
-//     pg.pop();
-//   }
+  if (lerpSec >= 15 && lerpSec <= 20) {
+    pg.push();
+    pg.fill(colorPairs[0].accent);
+    pg.circle(-25 * (lerpSec % 16), 0, 50);
+    pg.pop();
+  } else if (lerpSec >= 35 && lerpSec <= 40) {
+    pg.push();
+    pg.fill(colorPairs[1].accent);
+    pg.circle(-25 * ((lerpSec + 12) % 16), 0, 50);
+    pg.pop();
+  } else if (lerpSec >= 55 && lerpSec <= 60) {
+    pg.push();
+    pg.fill(colorPairs[2].tone);
+    pg.circle(-25 * ((lerpSec + 8) % 16), 0, 50);
+    pg.translate(-25 * ((lerpSec + 8) % 16), 0);
+    // expression
+    pg.push();
+    pg.strokeJoin(ROUND);
+    pg.stroke("black");
+    // eyes with lashes
+    pg.strokeWeight(5);
+    pg.point(-7, 0);
+    pg.point(7, 0);
+    pg.strokeWeight(3);
+    pg.line(-10, -3, -7, 0);
+    pg.line(4, -3, 7, 0);
+    // smiling mouth
+    pg.strokeWeight(3);
+    pg.noFill();
+    pg.arc(0, 0, 40, 40, PI / 3, (2 * PI) / 3, OPEN);
+    // left facing nose
+    pg.strokeWeight(3);
+    pg.beginShape();
+    pg.vertex(0, 5);
+    pg.vertex(-5, 10);
+    pg.vertex(0, 10);
+    pg.endShape();
+    pg.pop();
+    pg.pop();
+  }
 
-//   pg.pop();
-// }
+  pg.pop();
+}
 
 function keyPressed() {
   // keypressed toggles different modes
