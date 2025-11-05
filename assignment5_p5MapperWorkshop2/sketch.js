@@ -108,6 +108,7 @@ function xlSketch(pg) {
   lerpSec = (second() + t + ((ms / 1000) % 1)) % 60;
 
   pg.translate(200, 200);
+  pg.rotate(PI / 4);
   pg.scale(3);
 
   pg.background("white");
@@ -339,13 +340,6 @@ function xlSketch(pg) {
     pg.pop();
     pg.pop();
   }
-
-  pg.push();
-  lerP = constrain(0.5 - 1.5 * cos(((lerpSec % 20) * PI) / 10), 0, 1);
-  pg.fill("black");
-  pg.text(lerP, -50, -50);
-  pg.text(second(), -50, -40);
-  pg.pop();
 
   pg.pop();
 }
