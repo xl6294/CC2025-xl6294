@@ -4,7 +4,7 @@
 
 For this assignment, I plan to bring back the robot graphics (from assignment 4) as they are mainly composed of simple shapes like circles,arcs, strokes, and points. I also want to reuse my approach with the time functions (from assignment 3) to synchronize three sketches that will share a same base code, with only minimal variations.
 
-<video src="./assets/Three_Sketches_-_Screen_Recording_2025-10-29_at_2-39-00_AM.mov" width="100%" controls></video>
+<img src="./assets/Three_Sketches_Side_by_Side.png" alt="drawing" width="100%"/>
 
 ## Workshop Documentation
 
