@@ -9,24 +9,31 @@ Markdown Cheatsheet (from [https://www.markdownguide.org/cheat-sheet/](https://w
 ---
 
 # Heading1
+
 ## Heading2
+
 ### Heading3
+
 #### Heading4
+
 ##### Heading5
+
 ###### Heading6
 
 **bold text**
 
-*italicized text*
+_italicized text_
 
 ~~strikethrough text~~
 
 Ordered List:
+
 1. First item
 2. Second item
 3. Third item
 
 Unordered List:
+
 - First item
 - Second item
 - Third item
@@ -43,18 +50,14 @@ fun() {
 Link:  
 [linked text](https://www.example.com)
 
-
 Image with url:  
 ![image description](https://dm-gy-6063-2024f-b.github.io/assets/homework/02/clark-espaco-modulado-00.jpg)
-
 
 Image on repo:  
 ![image description](./file-name.jpg)
 
-
 To start a new line, add two spaces at the end of a line, like this:  
 this is a new line.
-
 
 To start a new paragraph, leave an empty line between two lines of text.
 
