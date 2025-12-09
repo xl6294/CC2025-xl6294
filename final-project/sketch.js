@@ -12,9 +12,10 @@ function draw() {
   rect(50, 50, columns * tileSize, wH);
   translate(50, 50 + wH);
 
-  // this updates the position of player and move around
-  helperF();
+  // this updates the position of player
+  playerMovement();
 
+  // this empties the items list
   items = [];
 
   push();
@@ -49,6 +50,7 @@ function draw() {
   push();
   fill(120);
   circle(player.x, player.y, player.d);
+
   // draw collision guiding points
   strokeWeight(3);
   stroke("red");

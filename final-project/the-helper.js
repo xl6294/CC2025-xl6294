@@ -1,4 +1,4 @@
-function helperF() {
+function playerMovement() {
   // reset the direction in x/y axis each frame
   player.xd = 0;
   player.yd = 0;
