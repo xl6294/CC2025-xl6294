@@ -1,0 +1,33 @@
+{
+  "comment": "https://www.w3schools.com/js/js_json.asp",
+  "exhibits": [
+    {
+      "name": "note",
+      "tileX": 3,
+      "tileY": 5,
+      "height": 0,
+      "type": "hint"
+    },
+    {
+      "name": "micro-view",
+      "tileX": 1,
+      "tileY": 3,
+      "height": 0,
+      "type": "hint"
+    },
+    {
+      "name": "mini-lawn",
+      "tileX": 5,
+      "tileY": 3,
+      "height": 0,
+      "type": "hint"
+    },
+    {
+      "name": "puzzle-pad",
+      "tileX": 3,
+      "tileY": 1,
+      "height": 0,
+      "type": "puzzle"
+    }
+  ]
+}

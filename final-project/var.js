@@ -6,21 +6,21 @@ let wallHeight;
 
 let tileSize = 50;
 
+let gameObjects; // this will load and hold the json file
+
 // for the game map, I am using 2D array / matrix
 // so I could indicate the tile with
 // 0 for floor and 1 for occupied by an object
 // https://youtu.be/W9CcEDxdnmg?si=5FYQp9cIooIBlzey
 
 let floorplan = [
-  [1, 0, 1, 1, 1, 0, 0, 1, 1],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 1, 0, 0, 0, 1, 0, 1, 0],
-  [0, 1, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
 ];
 
 // let columns = 5; // x => columns
@@ -45,3 +45,10 @@ let player = {
 let leftX, rightX, topY, bottomY; // test helper function
 
 let wH = 100; // wall height
+
+function preload() {
+  gameObjects = loadJSON("objects.json");
+}
+
+let itemActivated = false;
+let selectedExhibit;

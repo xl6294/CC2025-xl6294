@@ -2,11 +2,10 @@
 <html>
   <head>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.7.0/lib/p5.js"></script>
-    <script src="sketch.js"></script>
+    <script src="var.js"></script>
     <script src="the-class.js"></script>
     <script src="the-helper.js"></script>
-    <!-- <script src="the-map.js"></script> -->
-    <script src="var.js"></script>
+    <script src="sketch.js"></script>
     <style>
       * {
         box-sizing: border-box;
@@ -24,9 +23,31 @@
         height: 100vh;
       }
     </style>
+    <style>
+      #overlay {
+        display: none;
+        position: absolute;
+        top: 50px;
+        left: 420px;
+        width: 350px;
+        height: 380px;
+        background: white;
+        border: 2px solid black;
+        z-index: 100;
+      }
+      #myFrame {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+
     <meta name="robots" content="noindex" />
   </head>
   <body>
     <main id="main"></main>
+    <div id="overlay">
+      <iframe id="myFrame" src=""></iframe>
+    </div>
   </body>
 </html>
