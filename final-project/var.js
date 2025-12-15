@@ -1,18 +1,23 @@
-let speed;
-let posChar;
+// This file holds most of my globals
 
-let vs = 0.8; //vertical scale factor
-let wallHeight;
+// below is the vertical scale factor for drawing the grid + items
+let vs = 0.8;
 
 let tileSize = 50;
 
-let gameObjects; // this will load and hold the json file
+// below will load and hold the json file
+let gameObjects;
+
+// Load the JSON and create an object
+// https://p5js.org/reference/p5/loadJSON/
+function preload() {
+  gameObjects = loadJSON("objects.json");
+}
 
 // for the game map, I am using 2D array / matrix
 // so I could indicate the tile with
 // 0 for floor and 1 for occupied by an object
 // https://youtu.be/W9CcEDxdnmg?si=5FYQp9cIooIBlzey
-
 let floorplan = [
   [0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0],
@@ -23,12 +28,15 @@ let floorplan = [
   [0, 0, 0, 0, 0, 0, 0],
 ];
 
-// let columns = 5; // x => columns
-// let rows = 5; // y => rows
-
+// Get dimensions from the floorplan array.
+// rows = number of arrays => Y direction
+// columns = length of each row => X direction
+// ^^^ I got confused about which ties to which all the time :(
 let rows = floorplan.length; // dependent variables
 let columns = floorplan[0].length; // dependent variables
 
+// Pixel dimensions of the map
+// before any drawing transforms like translate, scale, etc.
 let mapWidth = columns * tileSize;
 let mapHeight = rows * tileSize;
 
@@ -39,16 +47,14 @@ let player = {
   xd: 0, // direction indicator // from the python game workshop
   yd: 0,
   speed: 3,
-  d: 30,
+  d: 30, // diameter
 };
 
-let leftX, rightX, topY, bottomY; // test helper function
+// below are to pair and form the coords for the collision probe points in helper function (the-helper.js)
+let leftX, rightX, topY, bottomY;
 
-let wH = 100; // wall height
+let wH = 2 * tileSize; // wall height
 
-function preload() {
-  gameObjects = loadJSON("objects.json");
-}
-
+// below vars are for displaying the info/detail panel
 let itemActivated = false;
 let selectedExhibit;

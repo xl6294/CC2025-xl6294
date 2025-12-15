@@ -154,6 +154,13 @@ function mousePressed() {
         } else if (item.name === "micro-view") {
           frame.src = "https://xl6294.github.io/CC2025-xl6294/assignment3/";
         }
+
+        // if (item.name === "mini-lawn") {
+        //   frame.src = "./assignment4/index.html";
+        // } else if (item.name === "micro-view") {
+        //   frame.src = "./assignment3/index.html";
+        // }
+
         // End the function
         return;
       }

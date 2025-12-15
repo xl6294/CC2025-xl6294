@@ -1,39 +1,43 @@
 class Item {
   constructor(x, y, type, name, h) {
-    this.x = x;
-    this.y = y;
+    this.x = x; // physical/pixel x position
+    this.y = y; // physical/pixel y position, but at the ground/tile level, so kind of like the y position of shadows
     this.type = type;
     this.name = name;
-    this.h = h;
+    this.h = h; // height of the object to locate the touchpoint
   }
 
+  // below checks if a touchpoint is clicked
   isTouchPointClicked(mx, my) {
+    // below is to compute the center of the touch point (and the object itself)
     let centerX = this.x;
     let centerY = this.y - (tileSize * vs) / 2 - this.h / 2;
 
-    let d = dist(mx, my, centerX, centerY);
-
-    if (d < 25) {
+    // touchpoint is considered clicked
+    // if distance from its center to the mouse position is less than touchpoint circle radius
+    // hard-coded value here, need to change later
+    if (dist(mx, my, centerX, centerY) < 25) {
       return true;
     } else {
       return false;
     }
   }
 
+  // below draws a translucent circle at touchpoints
   drawTouchPoint() {
-    // object distance from player
-    let objectDist = dist(player.x, player.y * vs, this.x, this.y);
+    // object distance from player (kind of calculating the distance between their shadows)
+    let objectDist = dist(playerPosition.x, playerPosition.y, this.x, this.y);
 
-    // draw the touchpoint if the player is within 1 tile
+    // draw the touchpoint if the player is within 1 tile distance
     if (objectDist < tileSize) {
       push();
 
       noStroke();
-      fill("rgba(255, 200, 0, 0.5)");
+      fill("rgba(255, 200, 0, 0.5)"); // maybe different color later
 
       let centerOffset = -((tileSize * vs) / 2) - this.h / 2;
 
-      circle(0, centerOffset, 50);
+      circle(0, centerOffset, 50); // hard-coded value here, need to change later
       pop();
     }
   }

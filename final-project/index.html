@@ -12,6 +12,7 @@
       }
       html,
       body {
+        overflow: hidden; /* Prevents page scrollbars */
         margin: 0;
       }
       canvas {
@@ -47,6 +48,7 @@
   <body>
     <main id="main"></main>
     <div id="overlay">
+      <!-- A hidden <div id="overlay"> containing <iframe id="myFrame"> that you show for certain exhibit interactions. -->
       <iframe id="myFrame" src=""></iframe>
     </div>
   </body>
