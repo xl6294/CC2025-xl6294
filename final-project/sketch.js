@@ -1,7 +1,7 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  bgmSong.loop();
+  // bgmSong.loop();
 
   // find html elements from index.html
   overlay = document.getElementById("overlay");
@@ -144,10 +144,10 @@ function draw() {
 }
 
 function mousePressed() {
-  // if (bgmSong.isLoaded() && !bgmSong.isPlaying()) {
-  //   userStartAudio(); // Explicitly ensures audio context is running
-  //   bgmSong.loop();
-  // }
+  if (bgmSong.isLoaded() && !bgmSong.isPlaying()) {
+    userStartAudio(); // Explicitly ensures audio context is running
+    bgmSong.loop();
+  }
 
   // overcome translate()
   let mx = mouseX - 50;
