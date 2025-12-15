@@ -8,10 +8,13 @@ let tileSize = 50;
 // below will load and hold the json file
 let gameObjects;
 
+let bgmSong;
+
 // Load the JSON and create an object
 // https://p5js.org/reference/p5/loadJSON/
 function preload() {
   gameObjects = loadJSON("objects.json");
+  bgmSong = loadSound("bgmSong.mp3");
 }
 
 // for the game map, I am using 2D array / matrix
@@ -58,3 +61,10 @@ let wH = 2 * tileSize; // wall height
 // below vars are for displaying the info/detail panel
 let itemActivated = false;
 let selectedExhibit;
+
+// for HTML overlaying elements
+let overlay;
+let frame;
+
+// sort the Item class objects for rendering
+let items = [];

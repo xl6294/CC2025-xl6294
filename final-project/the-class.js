@@ -15,7 +15,7 @@ class Item {
 
     // touchpoint is considered clicked
     // if distance from its center to the mouse position is less than touchpoint circle radius
-    // hard-coded value here, need to change later
+    // hard-coded value here, need to change later ///////////////
     if (dist(mx, my, centerX, centerY) < 25) {
       return true;
     } else {
@@ -35,20 +35,30 @@ class Item {
       noStroke();
       fill("rgba(255, 200, 0, 0.5)"); // maybe different color later
 
-      let centerOffset = -((tileSize * vs) / 2) - this.h / 2;
+      let centerOffset = -((tileSize * vs) / 2) - this.h / 2; // should correspond with centerY from isTouchPointClicked() above
 
-      circle(0, centerOffset, 50); // hard-coded value here, need to change later
+      // draw the touchpoint circle
+      circle(0, centerOffset, 50); // hard-coded value here, need to change later ///////////////
       pop();
     }
   }
 
+  // below draws the player
   drawPlayer() {
     push();
     translate(this.x, this.y);
     noStroke();
+
+    //
+    // maybe set up a unit as tileSize / 6
+    //
+
+    // lower body: up-side-down shaded triangle
     fill("chocolate");
     triangle(-player.d / 3, -tileSize / 2, player.d / 3, -tileSize / 2, 0, 0);
     fill("coral");
+
+    // upper body triangle
     triangle(
       -player.d / 3,
       -tileSize / 2,
@@ -57,25 +67,53 @@ class Item {
       0,
       -tileSize
     );
+
+    // belly / torso base ellipse
+    ellipse(0, -tileSize / 2, (2 * player.d) / 3, tileSize / 6);
+
+    // body outline
+    strokeJoin(ROUND); // right now only applies to the player
+    stroke(0);
+    push();
+    noFill();
+    quad(
+      -player.d / 3,
+      -tileSize / 2,
+      0,
+      0,
+      player.d / 3,
+      -tileSize / 2,
+      0,
+      -tileSize
+    );
+    pop();
+
+    // head
     circle(0, -tileSize, tileSize / 2);
-    ellipse(0, -tileSize / 2, (2 * player.d) / 3, tileSize / 3);
 
     pop();
   }
 
+  // below first draws a table at this.x/this.y
+  // then draws the game object on the tabletop
+  // lastly draws the touchpoint if any
+  // may wanna lay touchpoint under the object /////////////////////
   drawTable() {
     push();
     translate(this.x, this.y);
     // fill("yellow");
     // triangle(-tileSize / 2, 0, tileSize / 2, 0, 0, -tileSize);
     fill("BurlyWood");
-    rect(-tileSize / 2, -tileSize * vs, tileSize, tileSize * vs); // tabletop
+
+    // vertical support?
     rect(
       tileSize / 6 - tileSize / 2,
       tileSize / 6,
       (2 * tileSize) / 3,
       (tileSize * vs) / 8
-    ); // vertical support
+    );
+
+    // legs
     rect(tileSize / 12 - tileSize / 2, 0, tileSize / 6, (tileSize * vs) / 2); // left leg
     rect(
       tileSize / 2 - tileSize / 6 - tileSize / 12,
@@ -84,14 +122,20 @@ class Item {
       (tileSize * vs) / 2
     ); // right leg
 
+    // tabletop slab thickness
     rect(-tileSize / 2, 0, tileSize, (tileSize * vs) / 8);
 
-    push();
-    // draw object on the table
+    // tabletop slab, squished by vs
+    rect(-tileSize / 2, -tileSize * vs, tileSize, tileSize * vs); // tabletop
 
+    push();
+
+    // below moves origin to the tabletop surface area
     translate(0, -(tileSize * vs) / 2);
+
     rectMode(CORNERS);
 
+    // draw object on the table
     // https://www.w3schools.com/Js/js_switch.asp
     switch (this.name) {
       case "note":
@@ -109,7 +153,7 @@ class Item {
     }
     pop();
 
-    // Draw the touchpoints here
+    // draw the touchpoints here ///...////////// will move up later
     this.drawTouchPoint();
 
     pop();

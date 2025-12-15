@@ -1,24 +1,23 @@
-let overlay;
-let frame;
-
-let items = [];
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  // find html elements
+  bgmSong.loop();
+
+  // find html elements from index.html
   overlay = document.getElementById("overlay");
   frame = document.getElementById("myFrame");
 
-  for (let i = 0; i < gameObjects.exhibits.length; i++) {
-    let exhibit = gameObjects.exhibits[i];
+  // mark the tiles with entities as "occupied" (1) in the floorplan matrix
+  for (let i = 0; i < gameObjects.entities.length; i++) {
+    let entity = gameObjects.entities[i];
 
-    let x = exhibit.tileX;
-    let y = exhibit.tileY;
+    // tile coordinates ftom json
+    let x = entity.tileX;
+    let y = entity.tileY;
 
-    if (y < floorplan.length && x < floorplan[0].length) {
-      floorplan[y][x] = 1;
-    }
+    // if (y < floorplan.length && x < floorplan[0].length) { // only marks if the tile is inside the floorplan bounds
+    floorplan[y][x] = 1;
+    // }
   }
 }
 
@@ -27,35 +26,35 @@ function draw() {
 
   // draw the wall
   fill("beige");
-  rect(50, 50, columns * tileSize, wH);
+  rect(50, 50, columns * tileSize, wH); // hard-coded value, will change later ////////////////////
   translate(50, 50 + wH);
 
-  // this updates the position of player
+  // this updates the position of player and check collision
   playerMovement();
 
-  // this empties the items list
+  // this empties the items list each frame
   items = [];
 
   push();
 
+  // squash y to fake top down perspective
   scale(1, vs);
 
+  // draw the tiles below
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < columns; j++) {
-      // draw the tiles
       push();
 
       if (floorplan[i][j] === 1) {
-        fill(120); // occupied shadow
-
-        // Find which gameObject is at this tile
+        // below finds which entity is at this tile
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
-        let theExhibit = gameObjects.exhibits.find(
+        let theEntity = gameObjects.entities.find(
           (element) => element.tileX === j && element.tileY === i
         );
-        let name = theExhibit.name;
-        let h = theExhibit.height;
+        let name = theEntity.name;
+        let h = theEntity.height;
 
+        // below creates an “Item” for render at the center of the tile
         let tempItem = new Item(
           (j + 0.5) * tileSize,
           (i + 0.5) * tileSize * vs,
@@ -64,8 +63,10 @@ function draw() {
           h
         );
         items.push(tempItem);
+
+        fill(120); // occupied shadow color
       } else {
-        fill(255); // floor
+        fill(255); // floor color
       }
 
       stroke(0);
@@ -75,40 +76,51 @@ function draw() {
     }
   }
 
-  // draw the player circle here
+  // draw the player shadow circle here
   push();
-  fill(120);
+  noStroke();
+  fill(120); // shadow color
   circle(player.x, player.y, player.d);
 
   // draw collision guiding points
-  strokeWeight(3);
-  stroke("red");
-  point(leftX, topY);
-  point(rightX, topY);
-  point(leftX, bottomY);
-  point(rightX, bottomY);
+  // un-comment-out to see
+  // strokeWeight(3);
+  // stroke("red");
+  // point(leftX, topY);
+  // point(rightX, topY);
+  // point(leftX, bottomY);
+  // point(rightX, bottomY);
   pop();
 
-  pop();
+  pop(); // scale(1, vs) ended
 
+  // compute player position with vs
   playerPosition = createVector(player.x, player.y * vs);
-  push();
-  strokeWeight(3);
-  stroke("green");
-  point(playerPosition.x, playerPosition.y);
-  pop();
 
+  // below draws the player position point
+  // un-comment-out to see
+  // push();
+  // strokeWeight(3);
+  // stroke("green");
+  // point(playerPosition.x, playerPosition.y);
+  // pop();
+
+  // below adds player as an (incomplete) Item so it will be y-sorting with other objects
   let tempItem = new Item(playerPosition.x, playerPosition.y, "player");
   items.push(tempItem);
 
+  // from assignment 4,
+  // using sorting algorithm on y to draw from back to front
+  // to fake depth
   items.sort((a, b) => a.y - b.y);
 
   for (let i = 0; i < items.length; i++) {
     items[i].display();
   }
 
-  // DRAW THE INFO BOX
-  if (itemActivated && selectedExhibit) {
+  // below draws the detail panel (or info box)
+  if (itemActivated && selectedEntity) {
+    // if (itemActivated === true && selectedEntity !== null)
     push();
     resetMatrix(); // https://p5js.org/reference/p5/resetMatrix/
 
@@ -125,13 +137,18 @@ function draw() {
     textSize(16);
 
     // Simple list of data
-    text("Name: " + selectedExhibit.name, 20, 40);
+    text("Name: " + selectedEntity.name, 20, 40);
 
     pop();
   }
 }
 
 function mousePressed() {
+  // if (bgmSong.isLoaded() && !bgmSong.isPlaying()) {
+  //   userStartAudio(); // Explicitly ensures audio context is running
+  //   bgmSong.loop();
+  // }
+
   // overcome translate()
   let mx = mouseX - 50;
   let my = mouseY - (50 + wH);
@@ -139,14 +156,14 @@ function mousePressed() {
   for (let i = 0; i < items.length; i++) {
     let item = items[i];
 
-    // Check if this item was clicked
+    // Check if this item was clicked (exclude the player)
     if (item.type === "object" && item.isTouchPointClicked(mx, my)) {
-      // html
+      // certain objects will open an HTML overlay with an iframe
       if (item.name === "mini-lawn" || item.name === "micro-view") {
         itemActivated = false;
-        selectedExhibit = null;
+        selectedEntity = null;
 
-        // Display HTML overlay
+        // display HTML overlay
         overlay.style.display = "block";
 
         if (item.name === "mini-lawn") {
@@ -161,7 +178,7 @@ function mousePressed() {
         //   frame.src = "./assignment3/index.html";
         // }
 
-        // End the function
+        // below ends the function
         return;
       }
 
@@ -171,7 +188,7 @@ function mousePressed() {
         overlay.style.display = "none";
 
         // Enable p5 info box
-        selectedExhibit = item;
+        selectedEntity = item;
         itemActivated = true;
         return;
       }
@@ -183,8 +200,9 @@ function mousePressed() {
 
 function closeDetailPanel() {
   itemActivated = false;
-  selectedExhibit = null;
+  selectedEntity = null;
 
+  // hide overlay if it was open
   overlay.style.display = "none";
 
   // window.focus(); // advice from friend, will verify
