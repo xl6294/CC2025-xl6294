@@ -143,12 +143,14 @@ function draw() {
   }
 }
 
-function mousePressed() {
+function keyPressed() {
   if (bgmSong.isLoaded() && !bgmSong.isPlaying()) {
     userStartAudio(); // Explicitly ensures audio context is running
     bgmSong.loop();
   }
+}
 
+function mousePressed() {
   // overcome translate()
   let mx = mouseX - 50;
   let my = mouseY - (50 + wH);
