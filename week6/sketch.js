@@ -1,90 +1,99 @@
-let bugs = [];
-let prevS = 0;
+// // //FIELDS:
+// // let x = 0;
+// // let y = 0;
+// // let d = 20; // diameter of circle
+// // let speed = 5;
+// // let hue = 20;
+// // let opacity = 127;
+
+// // // version 1: manually
+// // let harry; //this is a variable to store my object
+// // let samantha; //this will store another object
+
+let drunks = []; // square brackets indicate i'm making
+let drunkAmount = 1000;
+//an array
+
+// an array is a variable that contains multiple variables
+// each individual variable can be accessed using an
+// index number that is fed into the square brackets
+// like so: drunks[5] would give me the 6th drunk in the list
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  background(100, 180, 130);
+  x = width / 2;
+  y = height / 2;
+  colorMode(HSB);
 
-  let tempBug = new Bug(random(width), random(height)); // make a new bug, store it in a temporary variable
-  bugs.push(tempBug); // add that new bug to my bugs array
+  for (let i = 0; i < drunkAmount; i++) {
+    let drunkD = random(10, 50); // diamters from 10 to 100
+    let drunkSpeed = random(1, 7); // speeds from 1 to 7
+    let drunkHue = random(0, 60); // hues from 0 to 60
+    drunks[i] = new Drunk(width / 2, height / 2, drunkD, drunkSpeed, drunkHue);
+  }
 }
+
+//   // // version 1: manually
+//   // harry = new Drunk(width / 2, height / 2, 100, 3, 220);
+//   // samantha = new Drunk(width / 3, height / 3, 20, 3, 10);
+
+//   for (let i = 0; i < drunkAmount; i++) {
+//     let drunkD = random(10, 40); //diameter from 10 to 100
+//     let drunkSpeed = random(0.2, 3); //speed from 1 to 70
+//     let drunkHue = random(0, 60);
+//     drunks[i] = new Drunk(width / 2, height / 2, drunkD, drunkSpeed, drunkHue);
+//   }
+// }
+
+// function draw() {
+//   // //METHOD 1: MOVE THE DRUNK
+//   // //drunk walk
+//   // x = x + random(-speed, speed); //increment itself
+//   // y = y + random(-speed, speed);
+//   // //METHOD 2: DRAW THE DRUNK
+//   // fill(hue, 70, 100, opacity);
+//   // circle(x, y, d);
+
+//   // //version 1.0
+//   // harry.move();
+//   // harry.drawDrunk();
+
+//   // samantha.move();
+//   // samantha.drawDrunk();
+
+//   for (let i = 0; i < drunks.length; i++) {
+//     drunks[i].move();
+//     drunks[i].drawDrunk();
+//   }
+// }
 
 function draw() {
-  background(255);
-
-  for (let i = 0; i < bugs.length; i++) {
-    // starting at zero,
-    // repeat the following code
-    // incrementing i by one with each loop
-    // and ending at the length of the bugs array
-    bugs[i].move();
-    bugs[i].display();
-  }
-
-  // console.log(bugs);
-}
-
-function mousePressed() {
-  // runs ONCE when the mouse is clicked
-  let amIHovering = false;
-
-  for (let i = 0; i < bugs.length; i++) {
-    if (bugs[i].hovering == true) {
-      // Array.splice is a method for removing elements from an array
-      // parameter one is the element to remove
-      // parameter two is how many elements to remove
-      bugs.splice(i, 1); // erase element i from our array. erase only one element.
-      amIHovering = true; // flip the am I hovering variable to true, since the mouse click intersected with a bug
-    }
-  }
-
-  if (amIHovering == false) {
-    // if no hovering was detected in previous for loop...
-    let tempBug = new Bug(mouseX, mouseY); // make a new bug at the mouse position, store in temp variable
-    bugs.push(tempBug); // push the temp bug into the bugs array
+  for (let i = 0; i < drunks.length; i++) {
+    drunks[i].move();
+    drunks[i].display();
   }
 }
 
-class Bug {
-  constructor(x, y) {
-    // sets the initial values of "fields" or variables
-    // copying over the parameters that have been passed through the "new Bug()" constructor
-    // so that they are attached to our new "bug" instance
+class Drunk {
+  // class declares a new type of object
+  constructor(x, y, diameter, speed, hue) {
     this.x = x;
     this.y = y;
-    this.hovering = false; // a variable that will show whether the mouse is hovering over a given bug
-    this.noisePositionX = random(1000); // drop into perlin noise space at a random position for X
-    this.noisePositionY = random(1000); // drop into perlin noise space at a random position for Y
-    this.speed = 0.005; // speed at which to move through perlin noise space
+    this.diameter = diameter;
+    this.speed = speed;
+    this.hue = hue;
+    this.opacity = random(0, 1); // you can also initialize variables here
   }
 
   move() {
-    this.x = map(noise(this.noisePositionX), 0, 1, 0, width);
-    this.y = map(noise(this.noisePositionY), 0, 1, 0, height);
-    this.noisePositionX = this.noisePositionX + this.speed;
-    this.noisePositionY = this.noisePositionY + this.speed;
+    // you can declare functions or "methods" like this
+    this.x = this.x + random(-this.speed, this.speed);
+    this.y = this.y + random(-this.speed, this.speed);
   }
 
   display() {
-    if (dist(mouseX, mouseY, this.x, this.y) < 7.5) {
-      // is the mouse hovering over the bug?
-      // we are hovering!
-      this.hovering = true;
-      fill(0); //change fill to black
-    } else {
-      // we are not hovering!
-      this.hovering = false;
-      fill(255);
-    }
-
-    push();
-    translate(this.x, this.y);
-    line(0, 3, 10, 3);
-    line(0, -3, 10, -3);
-    line(0, 0, 10, 0);
-    line(0, 3, -10, 3);
-    line(0, -3, -10, -3);
-    line(0, 0, -10, 0);
-    circle(0, 0, 15);
-    pop();
+    fill(this.hue, 70, 100, this.opacity);
+    circle(this.x, this.y, this.diameter);
   }
 }
