@@ -187,7 +187,7 @@ function draw() {
   textSize(2 * thisUnit);
   // textWrap(WORD);
   text(
-    "Press 🄼 to play or pause background music. Use arrow keys to move around.", // 🅼 🄼
+    "Press 🄼 to play or pause background music. Use arrow keys (← ↑ ↓ →) to move around.", // 🅼 🄼 ↑↓←→
     thisUnit,
     thisUnit - wH,
     mapWidth - thisUnit
