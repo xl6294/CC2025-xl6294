@@ -11,12 +11,12 @@ class Item {
   isTouchPointClicked(mx, my) {
     // below is to compute the center of the touch point (and the object itself)
     let centerX = this.x;
-    let centerY = this.y - (tileSize * vs) / 2 - this.h / 2;
+    let centerY = this.y - 3 * thisUnit * vs - this.h / 2;
 
     // touchpoint is considered clicked
     // if distance from its center to the mouse position is less than touchpoint circle radius
     // hard-coded value here, need to change later ///////////////
-    if (dist(mx, my, centerX, centerY) < 25) {
+    if (dist(mx, my, centerX, centerY) < thisUnit * 3) {
       return true;
     } else {
       return false;
@@ -29,16 +29,16 @@ class Item {
     let objectDist = dist(playerPosition.x, playerPosition.y, this.x, this.y);
 
     // draw the touchpoint if the player is within 1 tile distance
-    if (objectDist < tileSize) {
+    if (objectDist < thisUnit * 6) {
       push();
 
       noStroke();
       fill("rgba(255, 200, 0, 0.5)"); // maybe different color later
 
-      let centerOffset = -((tileSize * vs) / 2) - this.h / 2; // should correspond with centerY from isTouchPointClicked() above
+      let centerOffset = -3 * thisUnit * vs - this.h / 2; // should correspond with centerY from isTouchPointClicked() above
 
       // draw the touchpoint circle
-      circle(0, centerOffset, 50); // hard-coded value here, need to change later ///////////////
+      circle(0, centerOffset, thisUnit * 6); // hard-coded value here, need to change later ///////////////
       pop();
     }
   }
@@ -49,47 +49,52 @@ class Item {
     translate(this.x, this.y);
     noStroke();
 
-    //
-    // maybe set up a unit as tileSize / 6
-    //
+    // // lower body: up-side-down shaded triangle
+    // fill("chocolate");
+    // triangle(-player.d / 3, -3 * thisUnit, player.d / 3, -3 * thisUnit, 0, 0);
+    // fill("coral");
 
-    // lower body: up-side-down shaded triangle
-    fill("chocolate");
-    triangle(-player.d / 3, -tileSize / 2, player.d / 3, -tileSize / 2, 0, 0);
-    fill("coral");
+    // // upper body triangle
+    // triangle(
+    //   -player.d / 3,
+    //   -3 * thisUnit,
+    //   player.d / 3,
+    //   -3 * thisUnit,
+    //   0,
+    //   -6 * thisUnit
+    // );
 
-    // upper body triangle
-    triangle(
-      -player.d / 3,
-      -tileSize / 2,
-      player.d / 3,
-      -tileSize / 2,
-      0,
-      -tileSize
+    // // belly / torso base ellipse
+    // ellipse(0, -3 * thisUnit, (2 * player.d) / 3, thisUnit);
+
+    // // body outline
+    // strokeJoin(ROUND); // right now only applies to the player
+    // stroke(0);
+    // push();
+    // noFill();
+    // quad(
+    //   -player.d / 3,
+    //   -3 * thisUnit,
+    //   0,
+    //   0,
+    //   player.d / 3,
+    //   -3 * thisUnit,
+    //   0,
+    //   -6 * thisUnit
+    // );
+    // pop();
+
+    // // head
+    // circle(0, -6 * thisUnit, 3 * thisUnit);
+
+    // loading a player image for now
+    image(
+      playerIMG,
+      -7.5 * thisUnit,
+      -9.25 * thisUnit,
+      15 * thisUnit,
+      (15 * thisUnit) / vs
     );
-
-    // belly / torso base ellipse
-    ellipse(0, -tileSize / 2, (2 * player.d) / 3, tileSize / 6);
-
-    // body outline
-    strokeJoin(ROUND); // right now only applies to the player
-    stroke(0);
-    push();
-    noFill();
-    quad(
-      -player.d / 3,
-      -tileSize / 2,
-      0,
-      0,
-      player.d / 3,
-      -tileSize / 2,
-      0,
-      -tileSize
-    );
-    pop();
-
-    // head
-    circle(0, -tileSize, tileSize / 2);
 
     pop();
   }
@@ -101,37 +106,26 @@ class Item {
   drawTable() {
     push();
     translate(this.x, this.y);
-    // fill("yellow");
-    // triangle(-tileSize / 2, 0, tileSize / 2, 0, 0, -tileSize);
+
     fill("BurlyWood");
 
     // vertical support?
-    rect(
-      tileSize / 6 - tileSize / 2,
-      tileSize / 6,
-      (2 * tileSize) / 3,
-      (tileSize * vs) / 8
-    );
+    rect(-2 * thisUnit, thisUnit, 4 * thisUnit, 0.75 * thisUnit * vs);
 
     // legs
-    rect(tileSize / 12 - tileSize / 2, 0, tileSize / 6, (tileSize * vs) / 2); // left leg
-    rect(
-      tileSize / 2 - tileSize / 6 - tileSize / 12,
-      0,
-      tileSize / 6,
-      (tileSize * vs) / 2
-    ); // right leg
+    rect(-2.5 * thisUnit, 0, thisUnit, 3 * thisUnit * vs); // left leg
+    rect(1.5 * thisUnit, 0, thisUnit, 3 * thisUnit * vs); // right leg
 
     // tabletop slab thickness
-    rect(-tileSize / 2, 0, tileSize, (tileSize * vs) / 8);
+    rect(-3 * thisUnit, 0, 6 * thisUnit, 0.75 * thisUnit * vs);
 
     // tabletop slab, squished by vs
-    rect(-tileSize / 2, -tileSize * vs, tileSize, tileSize * vs); // tabletop
+    rect(-3 * thisUnit, -6 * thisUnit * vs, 6 * thisUnit, 6 * thisUnit * vs); // tabletop
 
     push();
 
     // below moves origin to the tabletop surface area
-    translate(0, -(tileSize * vs) / 2);
+    translate(0, -3 * thisUnit * vs);
 
     rectMode(CORNERS);
 
@@ -160,23 +154,32 @@ class Item {
   }
 
   drawNote() {
-    fill(255);
-    rect(-15, -10, 15, 10);
+    image(noteIMG, -2 * thisUnit, -2 * thisUnit, 4 * thisUnit, 4 * thisUnit);
   }
 
   drawView() {
-    fill(255);
-    rect(-15, -10, 15, 10);
+    translate(0, 0.5 * thisUnit);
+    image(
+      viewIMG,
+      -2 * thisUnit,
+      -2 * thisUnit,
+      4 * thisUnit,
+      4 * thisUnit * vs
+    );
   }
 
   drawLawn() {
-    fill("green");
-    ellipse(0, 0, 30, 10);
+    image(lawnIMG, -2 * thisUnit, -2.5 * thisUnit, 4 * thisUnit, 4 * thisUnit);
   }
 
   drawPuzzle() {
-    fill(255);
-    rect(-15, -10, 15, 10);
+    image(
+      microscopeIMG,
+      -2 * thisUnit,
+      -6.5 * thisUnit,
+      4 * thisUnit,
+      8 * thisUnit
+    );
   }
 
   display() {

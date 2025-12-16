@@ -1,11 +1,39 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  // bgmSong.loop();
+  // if (!bgmSong.isPlaying()) bgmSong.play();
+
+  sW = width / 1500; // strokeWeight
+  strokeWeight(sW);
+
+  tileSize = min(width / 17, height / 9.6);
+  thisUnit = tileSize / 6;
+
+  // Pixel dimensions of the map
+  // before any drawing transforms like translate, scale, etc.
+  mapWidth = columns * tileSize;
+  mapHeight = rows * tileSize;
+
+  // creating the player profile
+  player = {
+    x: mapWidth / 2,
+    y: mapHeight / 2,
+    xd: 0, // direction indicator // from the python game workshop
+    yd: 0,
+    speed: 0.3 * thisUnit,
+    d: 4 * thisUnit, // diameter
+  };
+
+  wH = 2 * tileSize; // wall height
 
   // find html elements from index.html
   overlay = document.getElementById("overlay");
   frame = document.getElementById("myFrame");
+
+  overlay.style.left = `${9 * tileSize}px`;
+  overlay.style.top = `${tileSize}px`;
+  overlay.style.width = `${7 * tileSize}px`;
+  overlay.style.height = `${7.6 * tileSize}px`;
 
   // mark the tiles with entities as "occupied" (1) in the floorplan matrix
   for (let i = 0; i < gameObjects.entities.length; i++) {
@@ -22,12 +50,18 @@ function setup() {
 }
 
 function draw() {
-  background(100);
+  background(255);
+
+  push();
+  noFill();
+  strokeWeight(5 * sW);
+  rect(tileSize, tileSize, mapWidth, mapHeight * vs + wH);
+  pop();
 
   // draw the wall
   fill("beige");
-  rect(50, 50, columns * tileSize, wH); // hard-coded value, will change later ////////////////////
-  translate(50, 50 + wH);
+  rect(tileSize, tileSize, mapWidth, wH); // hard-coded value, will change later ////////////////////
+  translate(tileSize, tileSize + wH);
 
   // this updates the position of player and check collision
   playerMovement();
@@ -64,14 +98,17 @@ function draw() {
         );
         items.push(tempItem);
 
+        push();
+        blendMode(MULTIPLY);
         fill(120); // occupied shadow color
+        stroke(0);
+        rect(j * tileSize, i * tileSize, tileSize, tileSize);
+        pop();
       } else {
         fill(255); // floor color
+        stroke(0);
+        rect(j * tileSize, i * tileSize, tileSize, tileSize);
       }
-
-      stroke(0);
-      rect(j * tileSize, i * tileSize, tileSize, tileSize);
-
       pop();
     }
   }
@@ -79,8 +116,11 @@ function draw() {
   // draw the player shadow circle here
   push();
   noStroke();
+  push();
+  blendMode(MULTIPLY);
   fill(120); // shadow color
   circle(player.x, player.y, player.d);
+  pop();
 
   // draw collision guiding points
   // un-comment-out to see
@@ -124,36 +164,47 @@ function draw() {
     push();
     resetMatrix(); // https://p5js.org/reference/p5/resetMatrix/
 
-    translate(420, 50);
+    translate(9 * tileSize, tileSize);
 
     fill(255);
     stroke(0);
     strokeWeight(1);
-    rect(0, 0, 350, 380);
+    rect(0, 0, 7 * tileSize, 7.6 * tileSize);
 
     noStroke();
     fill(0);
     // textAlign(LEFT);
-    textSize(16);
+    textSize(3 * thisUnit);
 
     // Simple list of data
-    text("Name: " + selectedEntity.name, 20, 40);
+    text("Name: " + selectedEntity.name, 4 * thisUnit, 8 * thisUnit);
 
     pop();
   }
-}
 
-function keyPressed() {
-  if (bgmSong.isLoaded() && !bgmSong.isPlaying()) {
-    userStartAudio(); // Explicitly ensures audio context is running
-    bgmSong.loop();
-  }
+  push();
+  fill(0);
+  textSize(2 * thisUnit);
+  // textWrap(WORD);
+  text(
+    "Press 🄼 to play or pause background music. Use arrow keys to move around.", // 🅼 🄼
+    thisUnit,
+    thisUnit - wH,
+    mapWidth - thisUnit
+  );
+  text(
+    "BGM: “Gymnopédie No. 1” by Kevin MacLeod, Free Music Archive, CC BY",
+    0,
+    mapHeight * vs + thisUnit,
+    mapWidth
+  );
+  pop();
 }
 
 function mousePressed() {
   // overcome translate()
-  let mx = mouseX - 50;
-  let my = mouseY - (50 + wH);
+  let mx = mouseX - tileSize;
+  let my = mouseY - (tileSize + wH);
 
   for (let i = 0; i < items.length; i++) {
     let item = items[i];
@@ -161,24 +212,30 @@ function mousePressed() {
     // Check if this item was clicked (exclude the player)
     if (item.type === "object" && item.isTouchPointClicked(mx, my)) {
       // certain objects will open an HTML overlay with an iframe
-      if (item.name === "mini-lawn" || item.name === "micro-view") {
+      if (
+        item.name === "mini-lawn" ||
+        item.name === "micro-view" ||
+        item.name === "puzzle-pad"
+      ) {
         itemActivated = false;
         selectedEntity = null;
 
         // display HTML overlay
         overlay.style.display = "block";
 
-        if (item.name === "mini-lawn") {
-          frame.src = "https://xl6294.github.io/CC2025-xl6294/assignment2/";
-        } else if (item.name === "micro-view") {
-          frame.src = "https://xl6294.github.io/CC2025-xl6294/assignment3/";
-        }
-
         // if (item.name === "mini-lawn") {
-        //   frame.src = "./assignment4/index.html";
+        //   frame.src = "https://xl6294.github.io/CC2025-xl6294/assignment2/";
         // } else if (item.name === "micro-view") {
-        //   frame.src = "./assignment3/index.html";
+        //   frame.src = "https://xl6294.github.io/CC2025-xl6294/assignment3/";
         // }
+
+        if (item.name === "mini-lawn") {
+          frame.src = "./assignment2/index.html";
+        } else if (item.name === "micro-view") {
+          frame.src = "./assignment3/index.html";
+        } else if (item.name === "puzzle-pad") {
+          frame.src = "./assignment4/index.html";
+        }
 
         // below ends the function
         return;
@@ -206,6 +263,14 @@ function closeDetailPanel() {
 
   // hide overlay if it was open
   overlay.style.display = "none";
+}
 
-  // window.focus(); // advice from friend, will verify
+function keyPressed() {
+  if (key === "m" || key === "M") {
+    if (!bgmSong.isPlaying()) {
+      bgmSong.loop();
+    } else if (bgmSong.isPlaying()) {
+      bgmSong.pause();
+    }
+  }
 }

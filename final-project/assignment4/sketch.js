@@ -43,6 +43,12 @@ function draw() {
   for (let i = 0; i < robots.length; i++) {
     robots[i].display();
   }
+
+  push();
+  fill(0);
+  textSize(5);
+  text("Click anywhere to generate a robot.", 5, 7);
+  pop();
 }
 
 // when mouse is pressed,
