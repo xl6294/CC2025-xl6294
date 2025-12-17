@@ -15,7 +15,6 @@ class Item {
 
     // touchpoint is considered clicked
     // if distance from its center to the mouse position is less than touchpoint circle radius
-    // hard-coded value here, need to change later ///////////////
     if (dist(mx, my, centerX, centerY) < thisUnit * 3) {
       return true;
     } else {
@@ -38,7 +37,7 @@ class Item {
       let centerOffset = -3 * thisUnit * vs - this.h / 2; // should correspond with centerY from isTouchPointClicked() above
 
       // draw the touchpoint circle
-      circle(0, centerOffset, thisUnit * 6); // hard-coded value here, need to change later ///////////////
+      circle(0, centerOffset, thisUnit * 6);
       pop();
     }
   }
@@ -102,7 +101,7 @@ class Item {
   // below first draws a table at this.x/this.y
   // then draws the game object on the tabletop
   // lastly draws the touchpoint if any
-  // may wanna lay touchpoint under the object /////////////////////
+  // may wanna lay touchpoint under the object later
   drawTable() {
     push();
     translate(this.x, this.y);
