@@ -129,7 +129,7 @@ class Item {
 
     rectMode(CORNERS);
 
-    // draw object on the table
+    // draw object based on name on the table
     // https://www.w3schools.com/Js/js_switch.asp
     switch (this.name) {
       case "note":
@@ -147,12 +147,13 @@ class Item {
     }
     pop();
 
-    // draw the touchpoints here ///...////////// will move up later
+    // draw the touchpoints here ... may move somewhere more reasonable later
     this.drawTouchPoint();
 
     pop();
   }
 
+  // below methods load corresponding pngs for the objects
   drawNote() {
     image(noteIMG, -2 * thisUnit, -2 * thisUnit, 4 * thisUnit, 4 * thisUnit);
   }
@@ -182,6 +183,7 @@ class Item {
     );
   }
 
+  // main rendering method to call in draw()
   display() {
     if (this.type === "object") {
       this.drawTable();

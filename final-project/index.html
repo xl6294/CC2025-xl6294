@@ -17,7 +17,7 @@
       }
       html,
       body {
-        overflow: hidden; /* Prevents page scrollbars */
+        overflow: hidden; /* disable page scrolling/scrollbars */
         margin: 0;
       }
       canvas {
@@ -33,12 +33,13 @@
       #overlay {
         display: none;
         position: absolute;
+        /* will define below in sketch.js */
         /* top: 50px; */
         /* left: 420px; */
         /* width: 350px; */
         /* height: 380px; */
         background: white;
-        border: 2px solid black;
+        border: solid black;
         z-index: 100;
       }
       #myFrame {

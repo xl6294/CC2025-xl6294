@@ -7,7 +7,7 @@ function setup() {
   strokeWeight(sW);
 
   tileSize = min(width / 17, height / 9.6);
-  thisUnit = tileSize / 6;
+  thisUnit = tileSize / 6; // this will serve as a design unit responsive to tileSize (and window size)
 
   // Pixel dimensions of the map
   // before any drawing transforms like translate, scale, etc.
@@ -30,10 +30,15 @@ function setup() {
   overlay = document.getElementById("overlay");
   frame = document.getElementById("myFrame");
 
+  // below adds position and size to the overlay panel
+  // using template literals (because css needs the 'px' unit)
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+  // so it also scales with the p5 sketch.
   overlay.style.left = `${9 * tileSize}px`;
   overlay.style.top = `${tileSize}px`;
   overlay.style.width = `${7 * tileSize}px`;
   overlay.style.height = `${7.6 * tileSize}px`;
+  overlay.style.border = `${3 * sW}px solid black`;
 
   // mark the tiles with entities as "occupied" (1) in the floorplan matrix
   for (let i = 0; i < gameObjects.entities.length; i++) {
@@ -52,6 +57,7 @@ function setup() {
 function draw() {
   background(255);
 
+  // draw a frame around the whole map + wall
   push();
   noFill();
   strokeWeight(5 * sW);
@@ -60,7 +66,7 @@ function draw() {
 
   // draw the wall
   fill("beige");
-  rect(tileSize, tileSize, mapWidth, wH); // hard-coded value, will change later ////////////////////
+  rect(tileSize, tileSize, mapWidth, wH);
   translate(tileSize, tileSize + wH);
 
   // this updates the position of player and check collision
@@ -80,7 +86,8 @@ function draw() {
       push();
 
       if (floorplan[i][j] === 1) {
-        // below finds which entity is at this tile
+        // if the tile is occupied (1)
+        // below finds which entity in JSON is at this tile
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
         let theEntity = gameObjects.entities.find(
           (element) => element.tileX === j && element.tileY === i
@@ -88,7 +95,7 @@ function draw() {
         let name = theEntity.name;
         let h = theEntity.height;
 
-        // below creates an “Item” for render at the center of the tile
+        // below creates an “Item” for rendering at the center of the tile
         let tempItem = new Item(
           (j + 0.5) * tileSize,
           (i + 0.5) * tileSize * vs,
@@ -159,6 +166,7 @@ function draw() {
   }
 
   // below draws the detail panel (or info box)
+  // right now, only the note will draw the info box
   if (itemActivated && selectedEntity) {
     // if (itemActivated === true && selectedEntity !== null)
     push();
@@ -168,16 +176,21 @@ function draw() {
 
     fill(255);
     stroke(0);
-    strokeWeight(1);
+    strokeWeight(3 * sW);
     rect(0, 0, 7 * tileSize, 7.6 * tileSize);
 
     noStroke();
     fill(0);
     // textAlign(LEFT);
-    textSize(3 * thisUnit);
+    textSize(2 * thisUnit);
 
-    // Simple list of data
-    text("Name: " + selectedEntity.name, 4 * thisUnit, 8 * thisUnit);
+    // print the note
+    text(
+      "“We have such a long way to go,” sighed the boy.\n\n“Yes, but look how far we've come,” said the horse.\n\n— Charlie Mackesy, The Boy, the Mole, the Fox and the Horse",
+      4 * thisUnit,
+      4 * thisUnit,
+      mapWidth - 8 * thisUnit
+    );
 
     pop();
   }
@@ -229,6 +242,7 @@ function mousePressed() {
         //   frame.src = "https://xl6294.github.io/CC2025-xl6294/assignment3/";
         // }
 
+        // set iframe url based on which object is clicked
         if (item.name === "mini-lawn") {
           frame.src = "./assignment2/index.html";
         } else if (item.name === "micro-view") {
@@ -237,8 +251,7 @@ function mousePressed() {
           frame.src = "./assignment4/index.html";
         }
 
-        // below ends the function
-        return;
+        return; // if displaying html overlay, ends the function here
       }
 
       // p5 Info Boxes
@@ -254,9 +267,12 @@ function mousePressed() {
     }
   }
 
-  closeDetailPanel();
+  closeDetailPanel(); // close any open panel or html overlay if clicked elsewhere
 }
 
+// below is when mouse click anywhere else
+// (other than the touchpoints)
+// the detail panel will be closed
 function closeDetailPanel() {
   itemActivated = false;
   selectedEntity = null;
@@ -265,8 +281,10 @@ function closeDetailPanel() {
   overlay.style.display = "none";
 }
 
+// this function will play or pause a looping background music
 function keyPressed() {
   if (key === "m" || key === "M") {
+    // Toggle background music with the `m` key
     if (!bgmSong.isPlaying()) {
       bgmSong.loop();
     } else if (bgmSong.isPlaying()) {
