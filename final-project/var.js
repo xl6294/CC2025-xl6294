@@ -65,7 +65,10 @@ let wH; // wall height
 
 // below vars are for displaying the info/detail panel
 let itemActivated = false;
-let selectedExhibit;
+let selectedExhibit = null;
+// `selectedEntity` is intentionally set as empty with `null` when nothing is selected
+// (`itemActivated` may not be necessary anymore in this case)
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null
 
 // for HTML overlaying elements
 let overlay;

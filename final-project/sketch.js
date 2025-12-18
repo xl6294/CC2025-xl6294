@@ -231,6 +231,8 @@ function mousePressed() {
         item.name === "puzzle-pad"
       ) {
         itemActivated = false;
+        // Intentionally empty `selectedEntity`
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null
         selectedEntity = null;
 
         // display HTML overlay
